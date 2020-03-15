@@ -2,13 +2,13 @@
 Список демо-примеров по технологиям
 
 ## Список решений
-- [metrics.bleu](demo/examples/metrics.bleu)
-- [metrics.init](demo/examples/metrics.init)
-- [metrics.rouge](demo/examples/metrics.rouge)
-- [sum._keras-text-summarization](demo/examples/sum._keras-text-summarization)
-- [sum._seq2seq](demo/examples/sum._seq2seq)
-- [sum.gensim](demo/examples/sum.gensim)
-- [sum.pytldr](demo/examples/sum.pytldr)
-- [sum.summa](demo/examples/sum.summa)
-- [sum.sumy](demo/examples/sum.sumy)
-- [sum.textteaser](demo/examples/sum.textteaser)
+- [metrics.bleu](metrics.bleu)
+- [metrics.init](metrics.init)
+- [metrics.rouge](metrics.rouge)
+- [sum._keras-text-summarization](sum._keras-text-summarization)
+- [sum._seq2seq](sum._seq2seq)
+- [sum.gensim](sum.gensim)
+- [sum.pytldr](sum.pytldr)
+- [sum.summa](sum.summa)
+- [sum.sumy](sum.sumy)
+- [sum.textteaser](sum.textteaser)
