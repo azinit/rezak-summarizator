@@ -3,7 +3,7 @@
 
 ## Список решений
 - [metrics.bleu](metrics.bleu)
-- [metrics.init](metrics.init)
+- [metrics.nist](metrics.nist)
 - [metrics.rouge](metrics.rouge)
 - [sum._keras-text-summarization](sum._keras-text-summarization)
 - [sum._seq2seq](sum._seq2seq)
