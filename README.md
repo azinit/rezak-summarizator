@@ -1,4 +1,4 @@
-# rezak-summarizatior
+# rezak-summarizator
 Rezak - сокращатель текста
 
 # Содержание
