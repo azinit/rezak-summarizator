@@ -18,7 +18,7 @@ summ.summarise(example)
 >> Lorem ipsum omle roque
 Requie somebody close KPFU
 """
-
+#i was here
 
 # ================== Другие примеры ==================
 """
