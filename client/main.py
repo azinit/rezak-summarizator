@@ -13,7 +13,7 @@ from core import (
 
 priorities = [
     '',
-    '',     # fonts.yellow,
+    fonts.yellow,
     fonts.red,
     fonts.red2
 ]
