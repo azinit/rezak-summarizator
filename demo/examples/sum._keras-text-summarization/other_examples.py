@@ -9,7 +9,7 @@ def example_1():
     """
 
     summ.config(**{
-        ... 
+        ...
     })
 
 if __name__ == "__main__":
