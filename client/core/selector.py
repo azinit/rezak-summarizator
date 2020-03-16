@@ -1,8 +1,12 @@
+"""
+Модуль для просчета вектора предложения
+"""
+
 from typing import List
 from operator import add
 from ._tokenizer import tokenize_sentences
 
-
+# FIXME: get_sentence_vector from pytldr.vector?
 # FIXME: modify
 def create_total_selection(text: str, impls) -> List[int]:
     total_selection = []

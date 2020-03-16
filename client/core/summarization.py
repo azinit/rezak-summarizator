@@ -1,6 +1,10 @@
+"""
+Список реализаций сокращения текста.
+Каждая функция позволяет сконфигурировать сокращатели под себя
+"""
+
+
 # TODO: add impls
-
-
 def summarize_pytldr_lsa(text: str) -> str:
     from pytldr.summarize.lsa import LsaOzsoy
     return LsaOzsoy().summarize(text, length=5)

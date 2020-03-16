@@ -1,3 +1,6 @@
+"""
+Токенизатор текста
+"""
 from typing import List
 from itertools import chain
 from pytldr.nlp.tokenizer import Tokenizer
