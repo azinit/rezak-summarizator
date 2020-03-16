@@ -1,4 +1,4 @@
-TESTPHRASE = '❓'
+TESTPHRASE = 'Lorem ipsum'
 
 # ANSI COLORS
 # ====== FAMILY ===== #

@@ -1,6 +1,21 @@
+from typing import List
+from operator import add
 from ._tokenizer import tokenize_sentences
 
 
+# FIXME: modify
+def create_total_selection(text: str, impls) -> List[int]:
+    total_selection = []
+    for impl in impls:
+        summary = impl(text)
+        # FIXME: summary as str for uniform tokenizing. Modify?
+        # compute selection
+        selection = create_selection(text, ''.join(summary))
+        total_selection = map(add, total_selection, selection) if total_selection else selection
+    return list(total_selection)
+
+
+# FIXME: consider a order
 def create_selection(text: str, summary: str):
     # tokenize
     text_sentences = tokenize_sentences(text)
@@ -14,4 +29,4 @@ def create_selection(text: str, summary: str):
                 selection[i] += 1
 
     # TODO: return and destructure as obj?
-    return selection, text_sentences, sum_sentences
+    return selection
