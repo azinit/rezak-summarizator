@@ -2,17 +2,17 @@
 NOTE: Здесь описываем базовое использование модуля (без прочих настроек)
 """
 
-from lib import summ
+from text_summarizer import summarizer
 
 example = """
 Lorem ipsum omle roque
 Lorem ipsum omle roque
 Lorem ipsum omle roque
-Requie somebody close KPFU
+Require somebody close KPFU
 """
-
+summarizer.summarize(example)
+summarizer.summarize(example, "textrank", 0.5)
 summ.summarise(example)
-"""
->> Lorem ipsum omle roque
-Requie somebody close KPFU
-"""
+
+
+

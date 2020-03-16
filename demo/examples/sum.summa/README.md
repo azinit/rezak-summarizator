@@ -2,5 +2,5 @@
 
 ## Установка
 ```
-pip install {your-algorythm}
+pip install summa
 ```

@@ -2,5 +2,6 @@
 
 ## Установка
 ```
-pip install {your-algorythm}
+pip install text-summarizer
+
 ```
