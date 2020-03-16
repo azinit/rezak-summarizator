@@ -1,6 +1,6 @@
-# your-algorytm
+# Gensim
 
 ## Установка
 ```
-pip install {your-algorythm}
+pip install gensim
 ```
