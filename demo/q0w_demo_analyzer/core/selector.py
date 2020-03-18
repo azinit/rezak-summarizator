@@ -4,8 +4,8 @@
 
 from typing import List
 from operator import add
-from .tokenizer import tokenize_sentences
-
+#from ._tokenizer import tokenize_sentences
+from nltk.tokenize import sent_tokenize as tokenize_sentences 
 
 # FIXME: get_sentence_vector from pytldr.vector?
 # FIXME: modify
@@ -21,7 +21,7 @@ def create_total_selection(text: str, impls) -> List[int]:
 
 
 # FIXME: consider a order
-def create_selection(text: str, summary: str) -> List[int]:
+def create_selection(text: str, summary: str):
     # tokenize
     text_sentences = tokenize_sentences(text)
     sum_sentences = tokenize_sentences(summary)
@@ -33,4 +33,5 @@ def create_selection(text: str, summary: str) -> List[int]:
             if txt_sentence.__contains__(sum_sentence):
                 selection[i] += 1
 
+    # TODO: return and destructure as obj?
     return selection
