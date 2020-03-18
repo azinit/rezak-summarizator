@@ -4,7 +4,7 @@
 
 from typing import List
 from operator import add
-from ._tokenizer import tokenize_sentences
+from .tokenizer import tokenize_sentences
 
 # FIXME: get_sentence_vector from pytldr.vector?
 # FIXME: modify
