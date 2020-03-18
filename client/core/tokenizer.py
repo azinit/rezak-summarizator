@@ -26,6 +26,7 @@ def __markup_sentences(text: str) -> str:
     :see MarkupProtector
     """
 
+    # FIXME: fixtures: redux-toolkit, covid2019
     # FIXME: invalid paragraphs? (lit-fixture)
 
     text = text.strip()
