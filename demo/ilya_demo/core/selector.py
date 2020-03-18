@@ -32,4 +32,5 @@ def create_selection(text: str, summary: str):
             if txt_sentence.__contains__(sum_sentence):
                 selection[i] += 1
 
+    # TODO: return and destructure as obj?
     return selection
