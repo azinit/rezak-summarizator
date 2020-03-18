@@ -15,7 +15,7 @@ from core import (
 priorities = [
     fonts.excess,
     fonts.dummy,
-    fonts.pr1,
+    fonts.pr3,
     fonts.pr0,
 ]
 
