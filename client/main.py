@@ -1,8 +1,11 @@
 """
 Точка входа в программу
-- высчитывает выборку по сокращенным предложениям
-- токенизирует (еще раз) самостоятельно текст по предложениям
-- отображает результат согласно вычисленным данным
+:remark Предполагаемая логика работы: (консольная версия)
+- core/ модули не знают друг о друге, main.py - связывает их все вместе
+- на вход main.py поступает текст
+- `tokenizer` разбивает исходный текст на предложения
+- `selector` использует эти предложения и реализации из `summarization`, которые также задаются из точки входа
+- По итоговой выборке `higlighter` окрашивает предложения
 """
 from core import (
     create_total_selection,
@@ -22,8 +25,8 @@ priorities = [
 with open('./fixtures/it.web.redux-toolkit.txt', 'r', encoding='utf-8') as fixture:
     # compute total selection
     text = fixture.read()
-    selection = create_total_selection(text, impls)
     text_sentences = tokenize_sentences(text)
+    selection = create_total_selection(text_sentences, impls)
     # print results
     for i, sentence in enumerate(text_sentences):
         weight = selection[i]
