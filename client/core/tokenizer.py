@@ -34,7 +34,7 @@ def __markup_sentences(text: str) -> str:
     # markup logic
     SPLIT_CHARS = [".", "!", "?"]
     for pattern in SPLIT_CHARS:
-        # добавляем PARAGRAPH_SEPARATOR к подходящим паттернам, для корректного разделения
+        # помечаем подходящие случае разделителем абзацев
         text = text \
             .replace(pattern + " ", pattern + PARAGRAPH_SEPARATOR) \
             .replace(pattern + "",  pattern + PARAGRAPH_SEPARATOR)
