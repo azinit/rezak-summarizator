@@ -19,7 +19,7 @@ priorities = [
     fonts.pr0,
 ]
 
-with open('./fixtures.txt', 'r', encoding='utf-8') as fixture:
+with open('./fixtures/it.interviews.txt', 'r', encoding='utf-8') as fixture:
     # compute total selection
     text = fixture.read()
     selection = create_total_selection(text, impls)
