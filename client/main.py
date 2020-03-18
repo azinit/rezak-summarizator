@@ -11,11 +11,12 @@ from core import (
     tokenize_sentences
 )
 
+
 priorities = [
-    '',
-    fonts.yellow,
-    fonts.red,
-    fonts.red2
+    fonts.excess,
+    fonts.dummy,
+    fonts.pr1,
+    fonts.pr0,
 ]
 
 with open('./fixtures.txt', 'r', encoding='utf-8') as fixture:
