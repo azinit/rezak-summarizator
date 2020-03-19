@@ -1,6 +1,8 @@
-# your-metric
+# ROUGE Metric
 
 ## Установка
 ```
-pip install {your-metric}
+pip install git+https://github.com/pltrdy/pythonrouge.git@45c72a017d921492c5b716d711f218df80e0762a#egg=pythonrouge
 ```
+
+> Также для работы понадобится установить интерпретатор языка Perl
