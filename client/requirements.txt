@@ -1,0 +1,2 @@
+gensim==3.8.1
+git+git://github.com/vinodnimbalkar/PyTLDR.git#egg=pytldr
