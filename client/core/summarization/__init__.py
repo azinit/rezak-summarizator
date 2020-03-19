@@ -8,6 +8,7 @@ from core.summarization.pytldr_impl import (
     pytldr_relevance_summary,
     pytldr_text_rank_summary
 )
+from core.summarization.summa_impl import summa_summary
 
 
 class Summarizer(Enum):
@@ -15,6 +16,7 @@ class Summarizer(Enum):
     PYTLDR_LSA = (pytldr_lsa_zsoy_summary,)
     PYTLDR_RELEVANCE = (pytldr_relevance_summary,)
     PYTLDR_TEXT_RANK = (pytldr_text_rank_summary,)
+    SUMMA = (summa_summary,)
 
     def __init__(self, func):
         self.func = partial(func)
