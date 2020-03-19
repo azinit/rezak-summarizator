@@ -1,18 +1,11 @@
 """
-NOTE: Здесь описываем базовое использование модуля (без прочих настроек)
+NOTE: analyze(peer, model)
 """
+from . import analyze
 
-from lib import metric
 
-example = """
-Lorem ipsum omle roque
-Lorem ipsum omle roque
-Lorem ipsum omle roque
-Requie somebody close KPFU
-"""
+peer = "Tokyo is the one of the biggest city in the world."
+model = "The capital of Japan, Tokyo, is the center of Japanese economy."
+score = analyze(peer, model)
+print(score)
 
-metric.analyze(example)
-
-"""
-{ metric1: 0.5, metric2: 0.8, … }
-"""
