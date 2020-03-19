@@ -19,6 +19,7 @@ priorities = [
     fonts.dummy,
     fonts.pr3,
     fonts.pr2,
+    fonts.pr1,
     fonts.pr0,
 ]
 
