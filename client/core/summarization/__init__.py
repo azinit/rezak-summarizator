@@ -11,7 +11,7 @@ from core.summarization.pytldr_impl import (
 from core.summarization.summa_impl import summa_summary
 
 
-class Summarizer(Enum):
+class Summarizers(Enum):
     GENSIM = (gensim_summary,)
     PYTLDR_LSA = (pytldr_lsa_zsoy_summary,)
     PYTLDR_RELEVANCE = (pytldr_relevance_summary,)

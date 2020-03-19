@@ -10,7 +10,6 @@
 from core import (
     create_total_selection,
     fonts,
-    impls,
     tokenize_sentences
 )
 
@@ -19,6 +18,7 @@ priorities = [
     fonts.excess,
     fonts.dummy,
     fonts.pr3,
+    fonts.pr2,
     fonts.pr0,
 ]
 
@@ -26,7 +26,7 @@ with open('./fixtures/it.web.redux-toolkit.txt', 'r', encoding='utf-8') as fixtu
     # compute total selection
     text = fixture.read()
     text_sentences = tokenize_sentences(text)
-    selection = create_total_selection(text_sentences, impls)
+    selection = create_total_selection(text_sentences, {"ratio": 0.6})
     # print results
     for i, sentence in enumerate(text_sentences):
         weight = selection[i]

@@ -1,8 +1,9 @@
 """ Модуль для просчета выборки (вектора приориетов) текста """
 from typing import List
+from .summarization import Summarizers
 
 
-def create_total_selection(text_sentences: List[str], impls) -> List[int]:
+def create_total_selection(text_sentences: List[str], sum_options: dict) -> List[int]:
     """
     Просчет общей выборки
     :remark Итоговый текст соединяем разделителями параграфными для корректности работы
@@ -12,8 +13,8 @@ def create_total_selection(text_sentences: List[str], impls) -> List[int]:
     from operator import add
     total_selection = [0] * len(text_sentences)
     text = '\n'.join(text_sentences)
-    for impl in impls:
-        summary = impl(text)
+    for summarizer in Summarizers:
+        summary = summarizer.summarize(text, sum_options)
         selection = create_selection(text_sentences, summary)
         total_selection = map(add, total_selection, selection)
     return list(total_selection)
