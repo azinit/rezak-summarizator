@@ -28,6 +28,7 @@ def __markup_sentences(text: str) -> str:
 
     # FIXME: fixtures: redux-toolkit, covid2019
     # FIXME: invalid paragraphs? (lit-fixture)
+    # FIXME: index.js
 
     text = text.strip()
     # protect special patterns
