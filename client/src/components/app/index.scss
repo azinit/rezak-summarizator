@@ -1,14 +1,14 @@
 html,
 body {
-  height: 500px;
-  width: 400px;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
 
 .rezak-app {
-  margin: 20px;
+  padding: 20px;
+  // height: 400px;
+  width: 400px;
   background-color: rgb(37, 37, 37);
   color: #fff;
   .title {
