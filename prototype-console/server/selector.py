@@ -1,6 +1,6 @@
 """ Модуль для просчета выборки (вектора приориетов) текста """
 from typing import List
-from .summarization import Summarizers
+from .process import Summarizers
 
 
 def create_total_selection(text_sentences: List[str], sum_options: dict) -> List[int]:

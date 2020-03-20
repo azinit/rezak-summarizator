@@ -1,15 +1,15 @@
 from functools import partial
 from enum import Enum
 from typing import List
-from core.tokenizer import tokenize_sentences
-from core.summarization.gensim_impl import gensim_summary
-from core.summarization.pytldr_impl import (
+from server.tokenizer import tokenize_sentences
+from server.process.gensim_impl import gensim_summary
+from server.process.pytldr_impl import (
     pytldr_lsa_zsoy_summary,
     pytldr_relevance_summary,
     pytldr_text_rank_summary
 )
-from core.summarization.summa_impl import summa_summary
-from core.summarization.sumy_impl import sumy_summary
+from server.process.summa_impl import summa_summary
+from server.process.sumy_impl import sumy_summary
 
 
 class Summarizers(Enum):
