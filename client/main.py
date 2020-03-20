@@ -13,15 +13,10 @@ from core import (
     tokenize_sentences
 )
 
+from random import random
 
-priorities = [
-    fonts.excess,
-    fonts.dummy,
-    fonts.pr3,
-    fonts.pr2,
-    fonts.pr1,
-    fonts.pr0,
-]
+#We can use random!
+priorities = fonts.get_priorities(random())
 
 with open('./fixtures/it.web.redux-toolkit.txt', 'r', encoding='utf-8') as fixture:
     # compute total selection
