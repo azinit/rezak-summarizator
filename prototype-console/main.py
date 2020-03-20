@@ -18,7 +18,7 @@ from random import random
 #We can use random!
 priorities = fonts.get_priorities(random())
 
-with open('./fixtures/it.web.redux-toolkit.txt', 'r', encoding='utf-8') as fixture:
+with open('./fixtures/it.web.rest-api.txt', 'r', encoding='utf-8') as fixture:
     # compute total selection
     text = fixture.read()
     text_sentences = tokenize_sentences(text)

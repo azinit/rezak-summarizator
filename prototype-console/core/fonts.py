@@ -48,4 +48,4 @@ def get_priorities(h):
     pr2 = hsv_to_color(h,s2,v)
     pr3 = hsv_to_color(h,s3,v)
 
-    return [excess,dummy,pr0,pr1,pr2,pr3]
+    return [excess,dummy,pr0,pr1,pr2,pr3, pr3, pr3]
