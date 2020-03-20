@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/rezak-summarizatior.iml" filepath="$PROJECT_DIR$/.idea/rezak-summarizatior.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/rezak-summarizator.iml" filepath="$PROJECT_DIR$/.idea/rezak-summarizator.iml" />
     </modules>
   </component>
 </project>
