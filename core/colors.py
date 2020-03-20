@@ -42,7 +42,8 @@ def hsv2color(h: float, s: float, v: float):
 def get_priorities(h):
     """ h in {0,..,1}! """
     excess = rgb2color(117, 117, 117)
-    dummy = hsv2color(h, sd, v)
+    # FIXME: default color (old: dummy = hsv2color(h, sd, v))
+    dummy = ''
     pr0 = hsv2color(h, s0, v)
     pr1 = hsv2color(h, s1, v)
     pr2 = hsv2color(h, s2, v)

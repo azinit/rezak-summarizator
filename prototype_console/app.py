@@ -1,5 +1,5 @@
 from random import random
-from server import (
+from core import (
     create_total_selection,
     colors,
     tokenize_sentences
@@ -12,7 +12,7 @@ class App:
         # We can use random!
         priorities = colors.get_priorities(random())
 
-        with open('client/fixtures/it.web.rest-api.txt', 'r', encoding='utf-8') as fixture:
+        with open('fixtures/it.web.rest-api.txt', 'r', encoding='utf-8') as fixture:
             # compute total selection
             text = fixture.read()
             text_sentences = tokenize_sentences(text)
