@@ -1,0 +1,12 @@
+html,
+body {
+  height: 500px;
+  width: 400px;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.rezak-app {
+  margin: 20px;
+}
