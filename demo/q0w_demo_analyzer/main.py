@@ -9,7 +9,7 @@ from os.path import isfile, join
 from core import (
     create_total_selection,
     fonts,
-    impls,
+    reducers,
     tokenize_sentences
 )
 
@@ -28,7 +28,7 @@ for file in onlyfiles:
     with open(file, 'r', encoding='utf-8') as fixture:
         # compute total selection
         text = fixture.read()
-        selection = create_total_selection(text, impls)
+        selection = create_total_selection(text, reducers)
         text_sentences = tokenize_sentences(text)
         # print results
         for i, sentence in enumerate(text_sentences):

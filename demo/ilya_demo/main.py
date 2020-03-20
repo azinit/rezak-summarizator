@@ -6,7 +6,7 @@
 """
 from core import (
     create_total_selection,
-    impls,
+    reducers,
     tokenize_sentences,
     colorize_sentences
 )
@@ -14,7 +14,7 @@ from core import (
 with open('./fixtures/it.interviews.txt', 'r', encoding='utf-8') as fixture:
     # compute total selection
     text = fixture.read()
-    selection = create_total_selection(text, impls)
+    selection = create_total_selection(text, reducers)
     text_sentences = tokenize_sentences(text)
     # print results
     colorize_sentences(text_sentences, selection)

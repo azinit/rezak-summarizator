@@ -2,14 +2,14 @@ from functools import partial
 from enum import Enum
 from typing import List
 from core.tokenizer import tokenize_sentences
-from core.process.gensim_impl import gensim_summary
-from core.process.pytldr_impl import (
+from core.reducers.gensim_impl import gensim_summary
+from core.reducers.pytldr_impl import (
     pytldr_lsa_zsoy_summary,
     pytldr_relevance_summary,
     pytldr_text_rank_summary
 )
-from core.process.summa_impl import summa_summary
-from core.process.sumy_impl import sumy_summary
+from core.reducers.summa_impl import summa_summary
+from core.reducers.sumy_impl import sumy_summary
 
 
 class Summarizers(Enum):
