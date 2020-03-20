@@ -1,5 +1,5 @@
 import React from 'react'
-import "./index.css";
+import "./index.scss";
 
 // TODO: add permissions to page
 // TODO: add popup on page
@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <div className='rezak-app'>
         <section>
-          <h1>Rezak plugin</h1>
+          <h1 className='title'>Rezak plugin</h1>
           <p>Chrome-Extension для сокращения текста</p>
         </section>
         <section>
