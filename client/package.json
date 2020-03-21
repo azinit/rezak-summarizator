@@ -13,6 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/martis-git/rezak-summarizator.git"
   },
+  "types": "src/types.d.ts",
   "keywords": [
     "summarization",
     "python",
