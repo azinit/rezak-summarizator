@@ -1,4 +1,5 @@
 from flask import Flask, escape, request
+from flask_cors import CORS
 from random import random
 from core import (
     create_total_selection,
@@ -7,6 +8,7 @@ from core import (
 )
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/reduce', methods=['POST'])
