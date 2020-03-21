@@ -35,15 +35,15 @@ const MainPage = () => {
             })
     }
     const getAccess = () => {
-        const text = "XXXX"
-        // @ts-ignore
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            // @ts-ignore
-            chrome.tabs.sendMessage(tabs[0].id, { data: text }, function (response) {
+        const text = ">>>>"
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id, { type: 'HACK_THE_PAGE', data: text }, (response) => {
                 setCurData('success changed')
                 console.log('success');
             });
         });
+        const bkg = chrome.extension.getBackgroundPage()
+        bkg.console.log('Hey, bro =)')
     }
     return (
         <div className='main-page'>

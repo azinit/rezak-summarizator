@@ -5,6 +5,10 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "baseUrl": "./",
+        "types": [
+            "@types/chrome",
+            "node"
+        ],
         "jsx": "preserve",
         "esModuleInterop": true,
     }

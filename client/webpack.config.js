@@ -11,8 +11,8 @@ const config = {
   devtool: "cheap-module-source-map",
   entry: {
     app: path.join(__dirname, "./src/index.tsx"),
-    background: path.join(__dirname, "./chrome/scripts/background.js"),
-    content: path.join(__dirname, "./chrome/scripts/content.js")
+    background: path.join(__dirname, "./chrome/scripts/background.ts"),
+    content: path.join(__dirname, "./chrome/scripts/content.ts")
   },
   output: {
     path: path.resolve(__dirname, "./build"),
