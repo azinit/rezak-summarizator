@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card, CardGroup, CardDeck, CardColumns } from 'react-bootstrap'
 
 const HomePage = () => {
     const impls = [
@@ -18,19 +17,11 @@ const HomePage = () => {
             </section>
             <section>
                 <h2>Содержит реализации</h2>
-                <CardGroup className='list-unstyled flex'>
+                <div className="impls">
                     {impls.map((impl: string, index) => (
-                        <li key={index}>
-                            <Card className='border-0 mb-1'>
-                                <Card.Body className='bg-dark text-secondary'>
-                                    <Card.Title>
-                                        &gt; {impl}
-                                    </Card.Title>
-                                </Card.Body>
-                            </Card>
-                        </li>
+                        <li key={index}>&gt; {impl}</li>
                     ))}
-                </CardGroup>
+                </div>
             </section>
         </>
     )
