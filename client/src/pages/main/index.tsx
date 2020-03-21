@@ -34,13 +34,24 @@ const MainPage = () => {
                 console.log('[ERR] [SUMMARIZE]', err)
             })
     }
-
+    const getAccess = () => {
+        const text = "XXXX"
+        // @ts-ignore
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            // @ts-ignore
+            chrome.tabs.sendMessage(tabs[0].id, { data: text }, function (response) {
+                setCurData('success changed')
+                console.log('success');
+            });
+        });
+    }
     return (
         <div className='main-page'>
             <div className="toolbar d-flex flex-column">
                 <Button className='mb-1' variant="primary" onClick={onReduce}>/reduce</Button>
                 <Button className='mb-1' variant="primary" onClick={onGetColors}>/get-colors</Button>
                 <Button className='mb-1' variant="primary" onClick={onSummarize}>/summarize</Button>
+                <Button className='mb-1' variant="info" onClick={getAccess}>get-access</Button>
             </div>
             <div className="content">
                 {JSON.stringify(curData)}

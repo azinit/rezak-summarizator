@@ -1,5 +1,6 @@
 // based on https://medium.com/@SunnyGolovine/build-a-chrome-extension-using-reactjs-and-webpack-part-1-976a414b85d0
-
+// ... https://github.com/dvidsilva/chrome-ext-sample
+// ... https://hackernoon.com/creating-popup-chrome-extensions-that-interact-with-the-dom-27b943978daf
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
@@ -10,6 +11,8 @@ const config = {
   devtool: "cheap-module-source-map",
   entry: {
     app: path.join(__dirname, "./src/index.tsx"),
+    background: path.join(__dirname, "./chrome/scripts/background.js"),
+    content: path.join(__dirname, "./chrome/scripts/content.js")
   },
   output: {
     path: path.resolve(__dirname, "./build"),
