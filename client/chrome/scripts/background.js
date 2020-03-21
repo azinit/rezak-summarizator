@@ -1,6 +1,12 @@
 /**
- * Place all your background scripts here
- * Delete this file and remove the "background"
- * block from manifest.json if you do not need this
+ * Здесь расположены все фоновые скрипты, работающие в контексте плагина
  */
-console.log("[REZAK:BACK] Плагин загружен")
+console.log("[REZAK:BACK] Фоновые скрипты подгружены")
+
+chrome.contextMenus.create({
+    id: 'rezak-sum',
+    title: '[Rezak] Сократить',
+    contexts: [
+        'selection'
+    ]
+})

@@ -1,8 +1,5 @@
 /**
- * Place all your content scripts here
- * Delete this file and remove the "js" entry
- * from the "content_scripts" block in your manifest.json
- * if you do not need this
+ * Здесь расположены все скрипты, имеющие доступ к контенту страницы
  */
 console.log("[REZAK:CONTENT] Плагин имеет доступ к странице")
 
