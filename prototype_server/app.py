@@ -22,3 +22,11 @@ def reduce():
     selection = create_total_selection(text_sentences, options)
 
     return {"text_sentences": text_sentences, "total_selection": selection, "max_selection": reducers_count}
+
+
+@app.route('/get-colors', methods=['GET'])
+def get_colors():
+    h = request.args.get('base_color', float)
+    if not isinstance(h, float):
+        h = random()
+    return {"colors": colors.get_priorities_hex(h)}
