@@ -1,49 +1,49 @@
 import React from 'react'
 import Fetch from '../../fetch'
 import { Button } from 'react-bootstrap'
+import { log } from '../../chrome-tools'
 
 const MainPage = () => {
     const [curData, setCurData] = React.useState({})
     const onReduce = () => {
         Fetch.reduce('...')
             .then((data) => {
-                console.log('[200] [REDUCE]', data)
+                log('[200] [REDUCE]', data)
                 setCurData(data)
             })
             .catch(err => {
-                console.log('[ERR] [REDUCE]', err)
+                log('[ERR] [REDUCE]', err)
             })
     }
     const onGetColors = () => {
         Fetch.getColors()
             .then((data) => {
-                console.log('[200] [GET-COLORS]', data)
+                log('[200] [GET-COLORS]', data)
                 setCurData(data)
             })
             .catch(err => {
-                console.log('[ERR] [GET-COLORS]', err)
+                log('[ERR] [GET-COLORS]', err)
             })
     }
     const onSummarize = () => {
         Fetch.summarize([], [], 0)
             .then((data) => {
-                console.log('[200] [SUMMARIZE]', data)
+                log('[200] [SUMMARIZE]', data)
                 setCurData(data)
             })
             .catch(err => {
-                console.log('[ERR] [SUMMARIZE]', err)
+                log('[ERR] [SUMMARIZE]', err)
             })
     }
     const getAccess = () => {
         const text = ">>>>"
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { type: 'HACK_THE_PAGE', data: text }, (response) => {
-                setCurData('success changed')
-                console.log('success');
+                setCurData('changed::' + JSON.stringify(response))
+                log('success');
             });
         });
-        const bkg = chrome.extension.getBackgroundPage()
-        bkg.console.log('Hey, bro =)')
+        log('Hey, bro =)')
     }
     return (
         <div className='main-page'>

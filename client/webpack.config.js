@@ -1,6 +1,8 @@
 // based on https://medium.com/@SunnyGolovine/build-a-chrome-extension-using-reactjs-and-webpack-part-1-976a414b85d0
 // ... https://github.com/dvidsilva/chrome-ext-sample
 // ... https://hackernoon.com/creating-popup-chrome-extensions-that-interact-with-the-dom-27b943978daf
+// ... https://medium.com/better-programming/create-a-chrome-extension-using-react-and-typescript-50e94e14320c
+
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
