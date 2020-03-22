@@ -39,6 +39,14 @@ def hsv2color(h: float, s: float, v: float):
     return rgb2color(res[0], res[1], res[2])
 
 
+def hsv2hex(h: float, s: float, v: float):
+    return rgb2hex(*hsv2rgb(h, s, v))
+
+
+def rgb2hex(r: int, g: int, b: int):
+    return '#%02x%02x%02x' % (r, g, b,)
+
+
 def get_priorities(h):
     """ h in {0,..,1}! """
     excess = rgb2color(117, 117, 117)
@@ -50,3 +58,13 @@ def get_priorities(h):
     pr3 = hsv2color(h, s3, v)
 
     return [excess, dummy, pr0, pr1, pr2, pr3, pr3, pr3]
+
+
+def get_priorities_hex(h: float):
+    excess = rgb2hex(117, 117, 117)
+    pr0 = hsv2hex(h, s0, v)
+    pr1 = hsv2hex(h, s1, v)
+    pr2 = hsv2hex(h, s2, v)
+    pr3 = hsv2hex(h, s3, v)
+
+    return [excess, pr0, pr1, pr2, pr3, pr3, pr3, pr3]
