@@ -30,11 +30,11 @@ const ColorPicker = () => {
             return '#6C757D'
         }
         const [r, g, b] = hex2rgb(color).rgb
-        return `rgba(${r}, ${g}, ${b}, ${(weight / MAX_WEIGHT) + 0.3})`
+        return `rgba(${r}, ${g}, ${b}, ${(weight / MAX_WEIGHT) + 0.4})`
     }
 
     return (
-        <div className='color-picker mt-2'>
+        <div className={classNames('color-picker mt-2', { disabled: !enabled })}>
             <Form.Check
                 type='switch'
                 id='colorize-enabled'
@@ -42,13 +42,7 @@ const ColorPicker = () => {
                 onChange={onChangeMode}
                 checked={enabled}
             />
-            <div className={classNames(
-                'demo',
-                'rounded-top p-2',
-                'bg-dark text-secondary',
-                'outline-none font-micro select-none',
-                { disabled: !enabled }
-            )}>
+            <div className="demo rounded-top p-2 bg-dark text-secondary outline-none font-micro select-none">
                 <samp>
                     {previewText.map(({ weight, content }, index) => (
                         <span key={index} style={{ color: getColor(weight) }}>{content}</span>
