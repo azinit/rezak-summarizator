@@ -4,7 +4,7 @@ import { MAX_WEIGHT, previewText } from '../fixtures'
 import './index.scss'
 
 const WeightPicker = () => {
-    const [value, setValue] = React.useState(50)
+    const [value, setValue] = React.useState(33)
     const MIN_VALUE = 0
     const MAX_VALUE = 100;
 
