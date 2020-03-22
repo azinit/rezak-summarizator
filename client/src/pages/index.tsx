@@ -4,6 +4,7 @@ import "./index.scss";
 import MainPage from './main';
 import SettingsPage from './settings';
 import HomePage from './home';
+import Footer from './footer';
 // TODO: add permissions to page
 // TODO: add popup on page
 
@@ -20,6 +21,9 @@ const App = () => {
           <Tab eventKey='settings' title='Настройки' children={<SettingsPage/>}/>
           <Tab eventKey='home' title='О нас' children={<HomePage/>}/>
         </Tabs>
+      </div>
+      <div className="app-footer pb-2">
+        <Footer/>
       </div>
     </div>
   )

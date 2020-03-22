@@ -8,7 +8,7 @@ body {
 .rezak-app {
   padding: 20px;
   border: 1px solid rgba(116, 116, 116, 0.1);
-  height: 400px;
+  height: 500px;
   width: 400px;
   // background-color: rgb(37, 37, 37);
   // color: #fff;
@@ -29,4 +29,15 @@ body {
     user-select: none;
   }
   
+  .app {
+    &-header {
+      height: 40px
+    }
+    &-body {
+      height: 390px;
+    }
+    &-footer {
+      height: 70px;
+    }
+  }
 }
