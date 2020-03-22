@@ -8,13 +8,14 @@ import './index.scss'
 
 type Props = {
     color: string;
-}
+};
 
-// FIXME: temp
-/* chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    log('New request discovered:', request)
-    sendResponse(12345)
-}) */
+if (chrome) {
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        log('New request discovered:', request)
+        sendResponse(12345)
+    })
+};
 
 const ToolsPage = (props: Props) => {
     const { color } = props;
@@ -32,14 +33,14 @@ const ToolsPage = (props: Props) => {
     const getAccess = () => {
         const text = ">>>>"
         // TODO: without tabs iter?
-        // FIXME: temporary
-        // chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        //     chrome.tabs.sendMessage(tabs[0].id, { type: 'HACK_THE_PAGE', data: text }, (response) => {
-        //         setCurData('page_was_hacked')
-        //         log(response)
-        //         log('success hacked');
-        //     });
-        // });
+        if (chrome) {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                chrome.tabs.sendMessage(tabs[0].id, { type: 'HACK_THE_PAGE', data: text }, (response) => {
+                    log(response)
+                    log('success hacked');
+                });
+            });
+        }
     }
     return (
         <div className='main-page mt-3'>
