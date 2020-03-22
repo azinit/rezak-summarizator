@@ -1,14 +1,20 @@
+$header-height: 60px;
+$body-height: 360px;
+$footer-height: 40px;
+$offset: 20px;
+$total-height: $header-height + $body-height + $footer-height + 2 * $offset;
+
 html,
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .rezak-app {
-  padding: 20px;
+  padding: $offset;
   border: 1px solid rgba(116, 116, 116, 0.1);
-  height: 500px;
+  height: $total-height;
   width: 400px;
   // background-color: rgb(37, 37, 37);
   // color: #fff;
@@ -31,13 +37,16 @@ body {
   
   .app {
     &-header {
-      height: 40px
+      height: $header-height;
+      max-height: $header-height;
     }
     &-body {
-      height: 360px;
+      height: $body-height;
+      max-height: $body-height;
     }
     &-footer {
-      height: 40px;
+      height: $footer-height;
+      max-height: $footer-height;
     }
   }
 }

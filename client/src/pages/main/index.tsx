@@ -2,6 +2,7 @@ import React from 'react'
 import Fetch from '../../fetch'
 import { Button } from 'react-bootstrap'
 import { log } from '../../chrome-tools'
+import './index.scss'
 
 // FIXME: temp
 /* chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -61,7 +62,7 @@ const MainPage = () => {
                 <Button className='mb-1' variant="primary" onClick={onSummarize}>/summarize</Button>
                 <Button className='mb-1' variant="info" onClick={getAccess}>get-access</Button>
             </div>
-            <div className="content">
+            <div className="content-area">
                 {JSON.stringify(curData)}
             </div>
         </div>

@@ -12,7 +12,7 @@ const App = () => {
   const [activeTab, setActiveTab] = React.useState('main')
   return (
     <div className='rezak-app app'>
-      <div className="app-header text-center mb-4">
+      <div className="app-header text-center">
         <div className="app-title h2 p-1 bg-primary text-white">
           REZAK
         </div>
@@ -24,7 +24,7 @@ const App = () => {
           <Tab eventKey='home' title='О расширении' children={<HomePage/>}/>
         </Tabs>
       </div>
-      <div className="app-footer">
+      <div className="app-footer bg-white">
         <Footer/>
       </div>
     </div>
