@@ -13,9 +13,9 @@ const HomePage = () => {
             <section className="impls py-3 border-top">
                 <div className="text-center h6">Содержит реализации</div>
                 <div className="impls list-unstyled">
-                    <CardDeck className='d-flex justify-content-center'>
+                    <CardDeck className='d-flex justify-content-center row'>
                         {impls.map(({ name, url }, index) => (
-                            <a href={url} target='_blank' className='m-1' key={index}>
+                            <a href={url} target='_blank' className='m-1 col-3' key={index}>
                                 <Button variant='outline-secondary'>{name}</Button>
                             </a>
                         ))}

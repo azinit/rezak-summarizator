@@ -1,27 +1,32 @@
 import React from 'react'
 import { HuePicker } from 'react-color'
+import { connect } from 'react-redux'
 import hex2rgb from 'hex2rgb'
 import { Form } from 'react-bootstrap'
 import { MAX_WEIGHT, previewText } from '../fixtures'
 import classNames from 'classnames'
+import { updateState } from '../../../store/user-settings'
 import './index.scss'
+
+type Props = {
+    isColorMode: boolean;
+    color: string;
+    onUpdateState: (nextState: Partial<IUserSettingsState>) => void;
+}
 
 /**
  * @see https://casesandberg.github.io/react-color/
  */
-const ColorPicker = () => {
-    const [color, setColor] = React.useState<string>('#00fff7')
-    const [enabled, setEnabled] = React.useState<boolean>(true)
+const ColorPicker = (props: Props) => {
+    const { isColorMode, onUpdateState, color } = props;
 
     const onChangeMode = (e) => {
-        const nextEnabled = e.target.checked;
-        setEnabled(nextEnabled)
+        onUpdateState({ isColorMode: e.target.checked })
     }
 
-    // TODO: add to store
     const onChangeColor = (nextColor) => {
-        if (enabled) {
-            setColor(nextColor.hex)
+        if (isColorMode) {
+            onUpdateState({ color: nextColor.hex })
         }
     };
 
@@ -34,13 +39,13 @@ const ColorPicker = () => {
     }
 
     return (
-        <div className={classNames('color-picker mt-2', { disabled: !enabled })}>
+        <div className={classNames('color-picker mt-2', { disabled: !isColorMode })}>
             <Form.Check
                 type='switch'
                 id='colorize-enabled'
                 label={<span className="h6 select-none">Цвет семантической покраски текста</span>}
                 onChange={onChangeMode}
-                checked={enabled}
+                checked={isColorMode}
             />
             <div className="demo rounded-top p-2 bg-dark text-secondary outline-none font-micro select-none">
                 <samp>
@@ -54,4 +59,12 @@ const ColorPicker = () => {
     )
 }
 
-export default ColorPicker
+const mapStateToProps = (state: IGlobalState) => ({
+    isColorMode: state.userSettings.isColorMode,
+    color: state.userSettings.color
+})
+
+const mapDispatchToProps = (dispatch: any) => ({
+    onUpdateState: (nextState: Partial<IUserSettingsState>) => dispatch(updateState(nextState))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(ColorPicker)

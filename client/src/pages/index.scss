@@ -3,6 +3,7 @@ $body-height: 360px;
 $footer-height: 40px;
 $offset: 20px;
 $total-height: $header-height + $body-height + $footer-height + 2 * $offset;
+$total-width: 400px;
 
 html,
 body {
@@ -15,7 +16,7 @@ body {
   padding: $offset;
   border: 1px solid rgba(116, 116, 116, 0.1);
   height: $total-height;
-  width: 400px;
+  width: $total-width;
   // background-color: rgb(37, 37, 37);
   // color: #fff;
   .title {

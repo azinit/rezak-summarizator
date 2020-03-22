@@ -1,8 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Fetch from '../../fetch'
 import { Button } from 'react-bootstrap'
 import { log } from '../../chrome-tools'
 import './index.scss'
+
+type Props = {
+    color: string;
+}
 
 // FIXME: temp
 /* chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -10,7 +15,8 @@ import './index.scss'
     sendResponse(12345)
 }) */
 
-const MainPage = () => {
+const MainPage = (props: Props) => {
+    const { color } = props;
     const [curData, setCurData] = React.useState({})
     const onReduce = () => {
         Fetch.reduce('...')
@@ -56,6 +62,7 @@ const MainPage = () => {
     }
     return (
         <div className='main-page'>
+            <div style={{ color }} className='bg-dark'>{color}</div>
             <div className="toolbar d-flex flex-column">
                 <Button className='mb-1' variant="primary" onClick={onReduce}>/reduce</Button>
                 <Button className='mb-1' variant="primary" onClick={onGetColors}>/get-colors</Button>
@@ -69,4 +76,12 @@ const MainPage = () => {
     )
 }
 
-export default MainPage
+const mapStateToProps = (state: IGlobalState) => ({
+    color: state.userSettings.color
+})
+
+const mapDispatchToProps = (dispatch: any) => ({
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage)
+
