@@ -1,5 +1,5 @@
 # rezak-summarizator
-Rezak - сокращатель текста
+Chrome-расширение для сокращения текста
 
 ![filters-tab](demo/screenshots/screen_0.png)
 ![about-tab](demo/screenshots/screen_2.png)
