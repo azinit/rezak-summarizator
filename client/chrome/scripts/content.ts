@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             [].forEach.call(linksList, (header) => {
                 header.innerHTML = request.data;
             });
-            sendResponse({ data: data, success: true });
+            sendResponse({ data: data, success: true, type: 'RESPONSE_TO_HACK' });
             break;
         default:
             console.log('Unknown message', request.type, request.data)

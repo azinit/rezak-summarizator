@@ -44,7 +44,8 @@ const MainPage = () => {
         // TODO: without tabs iter?
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { type: 'HACK_THE_PAGE', data: text }, (response) => {
-                setCurData('changed::' + JSON.stringify(response))
+                setCurData('page_was_hacked')
+                log(response)
                 log('success hacked');
             });
         });
