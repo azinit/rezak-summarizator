@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div className='text-center'>
             <a href='https://github.com/martis-git/rezak-summarizator' target='_blank' className='pr-1'>
-                <Button variant='outline-dark'>Github</Button>
+                <Button variant='outline-dark'>GitHub</Button>
             </a>
             <a href='https://github.com/max-talanov/1' target='_blank' className='pr-1'>
                 <Button variant='outline-info'>AI Course</Button>

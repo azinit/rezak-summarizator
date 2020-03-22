@@ -38,7 +38,7 @@ const ColorPicker = () => {
             <Form.Check
                 type='switch'
                 id='colorize-enabled'
-                label={<span className="text-center h6">Цвет семантической покраски текста</span>}
+                label={<span className="h6">Цвет семантической покраски текста</span>}
                 onChange={onChangeMode}
                 checked={enabled}
             />
