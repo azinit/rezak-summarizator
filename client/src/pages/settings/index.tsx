@@ -1,12 +1,11 @@
 import React from 'react'
+import ColorPicker from './color-picker'
 
 const SettingsPage = () => {
     return (
         <div>
-            <ul>
-                <li>Выбрать цвет</li>
-                <li>Выбрать приоритет</li>
-            </ul>
+            <ColorPicker/>
+            <p>Выбрать приоритет</p>
         </div>
     )
 }
