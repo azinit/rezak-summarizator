@@ -13,6 +13,7 @@
 
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { persistStore, persistReducer } from 'redux-persist'
+import defaultStorage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import createChromeStorage from 'redux-persist-chrome-storage'
 import { userSettingsReducer } from './user-settings'
 
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
 })
 
 // Create a ChromeStorage instance using the chrome runtime and the Sync StorageArea.
-const storage = createChromeStorage(window.chrome, 'sync');
+// FIXME: as env.var?
+const storage = (chrome.extension) ? createChromeStorage(window.chrome, 'sync') : defaultStorage;
 const config = {
     key: 'root',
     storage,

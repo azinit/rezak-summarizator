@@ -76,9 +76,13 @@ const MainPage = (props: Props) => {
     )
 }
 
-const mapStateToProps = (state: IGlobalState) => ({
-    color: state.userSettings.color
-})
+const mapStateToProps = (state: IGlobalState) => {
+    // FIXME: dev   
+    console.log('> STATE <', state.userSettings)
+    return {
+        color: state.userSettings.color
+    }
+}
 
 const mapDispatchToProps = (dispatch: any) => ({
 })

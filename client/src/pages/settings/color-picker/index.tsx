@@ -8,6 +8,8 @@ import classNames from 'classnames'
 import { updateState } from '../../../store/user-settings'
 import './index.scss'
 
+// TODO: add get-colors impl from server
+
 type Props = {
     isColorMode: boolean;
     color: string;

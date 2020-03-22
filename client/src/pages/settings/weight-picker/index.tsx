@@ -1,36 +1,43 @@
 import React from 'react'
 import ReactBootstrapSlider from 'react-bootstrap-slider';
 import { Form } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import { MAX_WEIGHT, previewText } from '../fixtures'
+import { updateState } from '../../../store/user-settings';
 import './index.scss'
 
 // TODO: add percent to weight-picker
+type Props = {
+    isSummarizeMode: boolean;
+    weight: number;
+    onUpdateState: (nextState: Partial<IUserSettingsState>) => void;
+}
 
 /**
  * @see https://github.com/brownieboy/react-bootstrap-slider
  */
-const WeightPicker = () => {
-    const [enabled, setEnabled] = React.useState<boolean>(true)
-    const [value, setValue] = React.useState<number>(33)
+const WeightPicker = (props: Props) => {
+    const { weight, isSummarizeMode, onUpdateState } = props;
     const MIN_VALUE = 0
     const MAX_VALUE = 100;
 
     const onChangeMode = (e) => {
         const nextEnabled = e.target.checked;
         if (!nextEnabled) {
-            setValue(0)
+            // FIXME: remove?
+            onUpdateState({ weight: 0 })
         }
-        setEnabled(nextEnabled)
+        onUpdateState({ isSummarizeMode: nextEnabled })
     }
 
     const onChangeWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(+e.target.value)
+        onUpdateState({ weight: +e.target.value })
     }
 
-    const getSentence = (weight: number, content: string) => {
-        const ratio = value / MAX_VALUE;
+    const getSentence = (sWeight: number, sContent: string) => {
+        const ratio = weight / MAX_VALUE;
         const threshold = ratio * MAX_WEIGHT;
-        return (weight >= threshold) ? content : ''
+        return (sWeight >= threshold) ? sContent : ''
     }
 
     return (
@@ -45,7 +52,7 @@ const WeightPicker = () => {
                     </div>
                 }
                 onChange={onChangeMode}
-                checked={enabled}
+                checked={isSummarizeMode}
             />
             <div className="demo rounded-top bg-dark text-light p-2 outline-none font-micro select-none">
                 <samp>
@@ -55,7 +62,7 @@ const WeightPicker = () => {
                 </samp>
             </div>
             <ReactBootstrapSlider
-                value={value}
+                value={weight}
                 change={onChangeWeight}
                 slideStop={onChangeWeight}
                 step={1}
@@ -63,10 +70,19 @@ const WeightPicker = () => {
                 max={MAX_VALUE}
             // orientation="vertical"
             // reversed={true}
-                disabled={!enabled && "disabled" || null} 
+                disabled={!isSummarizeMode && "disabled" || null} 
             />
         </div>
     )
 }
 
-export default WeightPicker
+const mapStateToProps = (state: IGlobalState) => ({
+    isSummarizeMode: state.userSettings.isSummarizeMode,
+    weight: state.userSettings.weight
+})
+
+const mapDispatchToProps = (dispatch: any) => ({
+    onUpdateState: (nextState: Partial<IUserSettingsState>) => dispatch(updateState(nextState))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeightPicker)
