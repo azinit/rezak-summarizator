@@ -3,8 +3,7 @@ $body-height: 360px;
 $footer-height: 40px;
 $offset: 20px;
 $total-height: $header-height + $body-height + $footer-height + 2 * $offset;
-// FIXME: make less width
-$total-width: 440px;
+$total-width: 360px;
 
 html,
 body {
@@ -34,6 +33,10 @@ body {
   .select-none {
     outline: none;
     user-select: none;
+  }
+
+  .w-medium {
+    width: 80px!important;
   }
 
   .app {

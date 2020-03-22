@@ -2,21 +2,21 @@ import React from 'react'
 import { Button, CardDeck } from 'react-bootstrap'
 import { impls } from './fixtures'
 
-const HomePage = () => {
+const AboutPage = () => {
     return (
         <>
             <section className="methods py-3">
                 <div className="text-center">
-                    Основан на <a href="https://github.com/scionoftech/Text_Summarization#extractive-summarization">экстрактивных алгоритмах</a>
+                    Based on <a href="https://github.com/scionoftech/Text_Summarization#extractive-summarization">extractive algorithms</a>
                 </div>
             </section>
             <section className="impls py-3 border-top">
-                <div className="text-center h6">Содержит реализации</div>
-                <div className="impls list-unstyled">
+                <div className="text-center h6">Contains implementations</div>
+                <div className="impls list-unstyled container">
                     <CardDeck className='d-flex justify-content-center row'>
                         {impls.map(({ name, url }, index) => (
-                            <a href={url} target='_blank' className='m-1 col-3' key={index}>
-                                <Button variant='outline-secondary'>{name}</Button>
+                            <a href={url} target='_blank' className='m-1' key={index}>
+                                <Button variant='outline-secondary' className='w-medium'>{name}</Button>
                             </a>
                         ))}
                     </CardDeck>
@@ -34,4 +34,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage
+export default AboutPage

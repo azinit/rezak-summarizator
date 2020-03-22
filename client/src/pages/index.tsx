@@ -2,7 +2,7 @@ import React from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
 import SettingsPage from './settings';
 import FiltersPage from './filters';
-import HomePage from './home';
+import AboutPage from './about';
 import Footer from './footer';
 import withStore from '../hocs/withStore'
 import "./index.scss";
@@ -21,9 +21,9 @@ const App = () => {
       <div className="app-content">
         <div className="app-body">
           <Tabs id="rezak-controlled-tabs" activeKey={activeTab} onSelect={setActiveTab}>
-            <Tab eventKey='filters' title='Фильтры' children={<FiltersPage />} />
-            <Tab eventKey='settings' title='Дополнительно' children={<SettingsPage />} />
-            <Tab eventKey='home' title='О расширении' children={<HomePage />} />
+            <Tab eventKey='filters' title='Filters' children={<FiltersPage />} />
+            <Tab eventKey='settings' title='Tools' children={<SettingsPage />} />
+            <Tab eventKey='about' title='About' children={<AboutPage />} />
           </Tabs>
         </div>
         <div className="app-footer bg-white">

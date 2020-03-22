@@ -47,8 +47,8 @@ const WeightPicker = (props: Props) => {
                 id='reduce-enabled'
                 label={
                     <div className="mb-1 select-none">
-                        <div className="h6 mb-0">Степень сокращения</div>
-                        <div className="text-muted font-small">(от сохранения всех предложений - до наиболее важных)</div>
+                        <div className="h6 mb-0">Reduction intensity</div>
+                        <div className="text-muted font-small">(from origin - to important sentences)</div>
                     </div>
                 }
                 onChange={onChangeMode}

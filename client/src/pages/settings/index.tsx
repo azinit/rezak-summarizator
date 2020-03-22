@@ -45,7 +45,7 @@ const SettingsPage = (props: Props) => {
         <div className='main-page'>
             <div style={{ color }} className='bg-dark'>{color}</div>
             <div className="toolbar d-flex flex-column">
-                <Button className='mb-1' variant="primary" onClick={onReduce}>Сохранить сокращенный текст</Button>
+                <Button className='mb-1' variant="primary" onClick={onReduce}>Save last text</Button>
                 <Button className='mb-1' variant="primary" onClick={onReduce}>/reduce</Button>
                 <Button className='mb-1' variant="info" onClick={getAccess}>get-access</Button>
             </div>
