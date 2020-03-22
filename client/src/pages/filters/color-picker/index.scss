@@ -1,0 +1,17 @@
+.rezak-app {
+  .color-picker {
+    .hue-picker {
+      width: 100% !important;
+    }
+
+    &.disabled {
+      .hue-horizontal {
+        background: linear-gradient(to right, rgb(77, 77, 77), rgb(161, 161, 161))
+      }
+      .demo span {
+        transition: color 0.2s;
+        color: #f8f9fa !important;
+      }
+    }
+  }
+}

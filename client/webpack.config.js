@@ -2,6 +2,7 @@
 // ... https://github.com/dvidsilva/chrome-ext-sample
 // ... https://hackernoon.com/creating-popup-chrome-extensions-that-interact-with-the-dom-27b943978daf
 // ... https://medium.com/better-programming/create-a-chrome-extension-using-react-and-typescript-50e94e14320c
+// ... https://medium.com/code-words/chrome-extensions-in-react-redux-88111d4c9f63
 
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");

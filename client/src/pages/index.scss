@@ -1,18 +1,59 @@
+$header-height: 60px;
+$body-height: 360px;
+$footer-height: 40px;
+$offset: 20px;
+$total-height: $header-height + $body-height + $footer-height + 2 * $offset;
+$total-width: 360px;
+
 html,
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .rezak-app {
-  padding: 20px;
-  border: 1px solid rgba(116, 116, 116, 0.1);
-  height: 400px;
-  width: 400px;
+  border: 1px solid rgba(0, 127, 255, 1.0);
+  height: $total-height;
+  width: $total-width;
   // background-color: rgb(37, 37, 37);
   // color: #fff;
   .title {
     color: rgb(97, 158, 167);
+  }
+
+  .font-small {
+    font-size: 10px;
+  }
+
+  .font-micro {
+    font-size: 6px;
+  }
+
+  .select-none {
+    outline: none;
+    user-select: none;
+  }
+
+  .w-medium {
+    width: 80px!important;
+  }
+
+  .app {
+    &-header {
+      height: $header-height;
+      max-height: $header-height;
+    }
+    &-content {
+      padding: $offset;
+    }
+    &-body {
+      height: $body-height;
+      max-height: $body-height;
+    }
+    &-footer {
+      height: $footer-height;
+      max-height: $footer-height;
+    }
   }
 }

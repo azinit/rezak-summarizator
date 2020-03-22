@@ -1,27 +1,36 @@
 import React from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
+import ToolsPage from './tools';
+import FiltersPage from './filters';
+import AboutPage from './about';
+import Footer from './footer';
+import withStore from '../hocs/withStore'
 import "./index.scss";
-import MainPage from './main';
-import SettingsPage from './settings';
-import HomePage from './home';
 // TODO: add permissions to page
 // TODO: add popup on page
 
 const App = () => {
-  const [activeTab, setActiveTab] = React.useState('main')
+  const [activeTab, setActiveTab] = React.useState('filters')
   return (
-    <div className='rezak-app'>
+    <div className='rezak-app app'>
       <div className="app-header text-center">
-        <h2>&lt; REZAK /&gt;</h2>
+        <div className="app-title h2 p-1 bg-primary text-white">
+          REZAK
+        </div>
       </div>
-      <div className="app-body">
-        <Tabs id="rezak-controlled-tabs" activeKey={activeTab} onSelect={setActiveTab}>
-          <Tab eventKey='main' title='Главная' children={<MainPage/>}/>
-          <Tab eventKey='settings' title='Настройки' children={<SettingsPage/>}/>
-          <Tab eventKey='home' title='О нас' children={<HomePage/>}/>
-        </Tabs>
+      <div className="app-content">
+        <div className="app-body">
+          <Tabs id="rezak-controlled-tabs" activeKey={activeTab} onSelect={setActiveTab}>
+            <Tab eventKey='filters' title='Filters' children={<FiltersPage />} />
+            <Tab eventKey='tools' title='Tools' children={<ToolsPage />} />
+            <Tab eventKey='about' title='About' children={<AboutPage />} />
+          </Tabs>
+        </div>
+        <div className="app-footer bg-white">
+          <Footer />
+        </div>
       </div>
     </div>
   )
 }
-export default App
+export default withStore(App)

@@ -3,10 +3,14 @@ import { selection, summary, text, text_sentences, colors, sum_sentences } from 
 // TODO: connect to server
 
 const FetchService: IFetchService = {
+    api: "http://80.211.47.203:29500",
+    headers: Object.freeze({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }),
     /** Симуляция fetch-запроса @test */
     mockFetch<T = Object>(response: T, options?: IFetchOtions): Promise<T> {
         const { timeout = 500, mockUrl = 'api/fixtures/rezak' } = options;
-
         console.log(`[GET] fetching data from: ${mockUrl}`);
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -17,35 +21,10 @@ const FetchService: IFetchService = {
     },
     /** Обработчик по сокращению текста */
     reduce(text: string, options?: ISumOptions) {
-        return this.mockFetch({
-            text_sentences,
-            selection
-        }, {
-            mockUrl: 'api/reduce'
-        })
-    },
-    /** Получить палитру цветов */
-    getColors(baseColor?: number) {
-        return this.mockFetch({
-            colors
-        }, {
-            mockUrl: 'api/get-colors'
-        })
-    },
-    /** Получить сокращенный текст */
-    summarize(textSentences: string[], totalSelection: number[], weightThreshold: number) {
-        return this.mockFetch({
-            sum_sentences
-        }, {
-            mockUrl: 'api/summarize'
-        })
-    },
-    /** Токенизировать текст */
-    tokenize(text: string) {
-        return this.mockFetch({
-            text_sentences
-        }, {
-            mockUrl: 'api/tokenize'
+        return fetch(`${this.api}/reduce`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify({ text })
         })
     }
 }
