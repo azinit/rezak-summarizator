@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Fetch from '../../fetch'
 import { Button } from 'react-bootstrap'
 import { log } from '../../chrome-tools'
+import { text } from '../../fetch/fixtures'
 import './index.scss'
 
 type Props = {
@@ -17,35 +18,15 @@ type Props = {
 
 const MainPage = (props: Props) => {
     const { color } = props;
-    const [curData, setCurData] = React.useState({})
+
     const onReduce = () => {
-        Fetch.reduce('...')
-            .then((data) => {
+        Fetch.reduce(text)
+            .then(r => r.json())
+            .then((data: IReduceResponse) => {
                 log('[200] [REDUCE]', data)
-                setCurData(data)
             })
             .catch(err => {
                 log('[ERR] [REDUCE]', err)
-            })
-    }
-    const onGetColors = () => {
-        Fetch.getColors()
-            .then((data) => {
-                log('[200] [GET-COLORS]', data)
-                setCurData(data)
-            })
-            .catch(err => {
-                log('[ERR] [GET-COLORS]', err)
-            })
-    }
-    const onSummarize = () => {
-        Fetch.summarize([], [], 0)
-            .then((data) => {
-                log('[200] [SUMMARIZE]', data)
-                setCurData(data)
-            })
-            .catch(err => {
-                log('[ERR] [SUMMARIZE]', err)
             })
     }
     const getAccess = () => {
@@ -64,13 +45,9 @@ const MainPage = (props: Props) => {
         <div className='main-page'>
             <div style={{ color }} className='bg-dark'>{color}</div>
             <div className="toolbar d-flex flex-column">
+                <Button className='mb-1' variant="primary" onClick={onReduce}>Сохранить сокращенный текст</Button>
                 <Button className='mb-1' variant="primary" onClick={onReduce}>/reduce</Button>
-                <Button className='mb-1' variant="primary" onClick={onGetColors}>/get-colors</Button>
-                <Button className='mb-1' variant="primary" onClick={onSummarize}>/summarize</Button>
                 <Button className='mb-1' variant="info" onClick={getAccess}>get-access</Button>
-            </div>
-            <div className="content-area">
-                {JSON.stringify(curData)}
             </div>
         </div>
     )

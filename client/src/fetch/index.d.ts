@@ -4,25 +4,16 @@ declare type IReduceResponse = {
     textSentences: string[];
     totalSelection: number[];
 }
-declare type IColorsResponse = {
-    colors: string[];
-}
-declare type ISummarizeResponse = {
-    textSentences: string[];
-}
-declare type ITokenizeResponse = {
-    textSentences: string[];
-}
 declare type IFetchOtions = {
     timeout: number,
     mockUrl: string
 }
 
 declare type FetchResponse = Promise<Response>
+type FetchHeaders = Headers | string[][] | Record<string, string> | undefined;
 declare type IFetchService = {
+    headers: FetchHeaders;
+    api: string;
     mockFetch:<T = Object> (response: T, options?: IFetchOtions) => Promise<T>
-    reduce: (text: string, options?: ISumOptions) => Promise<IReduceResponse>;
-    getColors: (baseColor?: number) => Promise<IColorsResponse>;
-    summarize: (textSentences: string[], totalSelection: number[], weightThreshold: number) => Promise<ISummarizeResponse>;
-    tokenize: (text: string) => Promise<ITokenizeResponse>;
+    reduce: (text: string, options?: ISumOptions) => Promise<Response>;
 }
