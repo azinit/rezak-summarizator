@@ -37,7 +37,7 @@ class App:
 
     @staticmethod
     def summarize(threshold: int):
-        summarized_sentences = summarize(App.sentences, App.selection, threshold)
+        summarized_sentences = select(App.sentences, App.selection, threshold)
         for i, (sentence, weight) in enumerate(summarized_sentences):
             priority = App.priorities[weight]
             print(f'{i} [{weight}] {priority}{sentence}{colors.end}')
