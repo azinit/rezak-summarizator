@@ -39,7 +39,7 @@ const WeightPicker = () => {
                 type='switch'
                 id='reduce-enabled'
                 label={
-                    <div className="mb-1">
+                    <div className="mb-1 select-none">
                         <div className="h6 mb-0">Степень сокращения</div>
                         <div className="text-muted font-small">(от сохранения всех предложений - до наиболее важных)</div>
                     </div>

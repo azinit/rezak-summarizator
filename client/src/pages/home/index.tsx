@@ -15,7 +15,7 @@ const HomePage = () => {
                 <div className="impls list-unstyled">
                     <CardDeck className='d-flex justify-content-center'>
                         {impls.map(({ name, url }, index) => (
-                            <a href={url} target='_blank' className='m-1'>
+                            <a href={url} target='_blank' className='m-1' key={index}>
                                 <Button variant='outline-secondary'>{name}</Button>
                             </a>
                         ))}

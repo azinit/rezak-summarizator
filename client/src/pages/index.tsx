@@ -1,19 +1,21 @@
 import React from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
-import "./index.scss";
 import MainPage from './main';
 import SettingsPage from './settings';
 import HomePage from './home';
 import Footer from './footer';
+import "./index.scss";
 // TODO: add permissions to page
 // TODO: add popup on page
 
 const App = () => {
   const [activeTab, setActiveTab] = React.useState('main')
   return (
-    <div className='rezak-app'>
-      <div className="app-header text-center">
-        <h2>&lt; REZAK /&gt;</h2>
+    <div className='rezak-app app'>
+      <div className="app-header text-center mb-4">
+        <div className="app-title h2 p-1 bg-primary text-white">
+          REZAK
+        </div>
       </div>
       <div className="app-body">
         <Tabs id="rezak-controlled-tabs" activeKey={activeTab} onSelect={setActiveTab}>
@@ -22,7 +24,7 @@ const App = () => {
           <Tab eventKey='home' title='О расширении' children={<HomePage/>}/>
         </Tabs>
       </div>
-      <div className="app-footer pb-2">
+      <div className="app-footer">
         <Footer/>
       </div>
     </div>
