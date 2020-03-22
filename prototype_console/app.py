@@ -3,7 +3,7 @@ from core import (
     create_total_selection,
     colors,
     tokenize_sentences,
-    summarize
+    select
 )
 
 
