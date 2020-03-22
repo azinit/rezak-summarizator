@@ -24,7 +24,8 @@ const rootReducer = combineReducers({
 
 // Create a ChromeStorage instance using the chrome runtime and the Sync StorageArea.
 // FIXME: as env.var?
-const storage = (chrome.extension) ? createChromeStorage(window.chrome, 'sync') : defaultStorage;
+// FIXME: enable chrome storage
+const storage = (chrome.extension && false) ? createChromeStorage(window.chrome, 'sync') : defaultStorage;
 const config = {
     key: 'root',
     storage,
