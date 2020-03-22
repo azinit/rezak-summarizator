@@ -20,15 +20,17 @@ const App = () => {
             REZAK
         </div>
         </div>
-        <div className="app-body">
-          <Tabs id="rezak-controlled-tabs" activeKey={activeTab} onSelect={setActiveTab}>
-            <Tab eventKey='main' title='Главная' children={<MainPage />} />
-            <Tab eventKey='settings' title='Настройки' children={<SettingsPage />} />
-            <Tab eventKey='home' title='О расширении' children={<HomePage />} />
-          </Tabs>
-        </div>
-        <div className="app-footer bg-white">
-          <Footer />
+        <div className="app-content">
+          <div className="app-body">
+            <Tabs id="rezak-controlled-tabs" activeKey={activeTab} onSelect={setActiveTab}>
+              <Tab eventKey='main' title='Главная' children={<MainPage />} />
+              <Tab eventKey='settings' title='Настройки' children={<SettingsPage />} />
+              <Tab eventKey='home' title='О расширении' children={<HomePage />} />
+            </Tabs>
+          </div>
+          <div className="app-footer bg-white">
+            <Footer />
+          </div>
         </div>
       </div>
     </Provider>

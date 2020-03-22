@@ -13,7 +13,6 @@ body {
 }
 
 .rezak-app {
-  padding: $offset;
   border: 1px solid rgba(116, 116, 116, 0.1);
   height: $total-height;
   width: $total-width;
@@ -26,7 +25,7 @@ body {
   .font-small {
     font-size: 10px;
   }
-  
+
   .font-micro {
     font-size: 6px;
   }
@@ -35,11 +34,14 @@ body {
     outline: none;
     user-select: none;
   }
-  
+
   .app {
     &-header {
       height: $header-height;
       max-height: $header-height;
+    }
+    &-content {
+      padding: $offset;
     }
     &-body {
       height: $body-height;
