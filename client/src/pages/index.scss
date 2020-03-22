@@ -3,7 +3,8 @@ $body-height: 360px;
 $footer-height: 40px;
 $offset: 20px;
 $total-height: $header-height + $body-height + $footer-height + 2 * $offset;
-$total-width: 400px;
+// FIXME: make less width
+$total-width: 440px;
 
 html,
 body {
