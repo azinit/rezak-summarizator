@@ -3,6 +3,10 @@ import Fetch from '../../fetch'
 import { Button } from 'react-bootstrap'
 import { log } from '../../chrome-tools'
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    log('New request discovered:', request)
+    sendResponse(12345)
+})
 const MainPage = () => {
     const [curData, setCurData] = React.useState({})
     const onReduce = () => {
@@ -37,13 +41,13 @@ const MainPage = () => {
     }
     const getAccess = () => {
         const text = ">>>>"
+        // TODO: without tabs iter?
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { type: 'HACK_THE_PAGE', data: text }, (response) => {
                 setCurData('changed::' + JSON.stringify(response))
-                log('success');
+                log('success hacked');
             });
         });
-        log('Hey, bro =)')
     }
     return (
         <div className='main-page'>

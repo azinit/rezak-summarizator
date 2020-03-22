@@ -2,7 +2,9 @@
  * Здесь расположены все фоновые скрипты, работающие в контексте плагина
  */
 const bkg = chrome.extension.getBackgroundPage()
-bkg.console.log("[REZAK:BACKGROUND] Background scripts loaded")
+const log = (...args) => bkg.console.log('[REZAK:BACK]', ...args)
+
+log("Background scripts loaded")
 
 chrome.contextMenus.create({
     id: 'rezak-sum',
@@ -46,8 +48,13 @@ chrome.contextMenus.create({
          * "windowId":18
          * }
          */
-        bkg.console.log('Selected: ', data.selectionText)
-        alert(`Выделен текст: ${data.selectionText}`)
+        log('Selected: ', data.selectionText)
+        chrome.runtime.sendMessage({
+            type: 'REDUCE_TEXT',
+            payload: data.selectionText
+        }, (response) => {
+            log('You did it!', response)
+        })
         // chrome.tabs.create({  
         //   url: "http://www.google.com/search?q=" + data.selectionText
         // });
