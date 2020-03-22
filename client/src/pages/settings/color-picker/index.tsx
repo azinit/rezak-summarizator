@@ -20,7 +20,9 @@ const ColorPicker = () => {
 
     // TODO: add to store
     const onChangeColor = (nextColor) => {
-        setColor(nextColor.hex)
+        if (enabled) {
+            setColor(nextColor.hex)
+        }
     };
 
     const getColor = (weight: number) => {

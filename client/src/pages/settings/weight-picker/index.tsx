@@ -4,6 +4,8 @@ import { Form } from 'react-bootstrap'
 import { MAX_WEIGHT, previewText } from '../fixtures'
 import './index.scss'
 
+// TODO: add percent to weight-picker
+
 /**
  * @see https://github.com/brownieboy/react-bootstrap-slider
  */
@@ -45,7 +47,7 @@ const WeightPicker = () => {
                 onChange={onChangeMode}
                 checked={enabled}
             />
-            <div className="demo rounded-top bg-dark text-secondary p-2 outline-none font-micro select-none">
+            <div className="demo rounded-top bg-dark text-light p-2 outline-none font-micro select-none">
                 <samp>
                     {previewText.map(({ weight, content }, index) => (
                         <span key={index}>{getSentence(weight, content)}</span>
