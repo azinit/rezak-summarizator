@@ -1,7 +1,13 @@
 .rezak-app {
-    .color-picker {
-        .hue-picker {
-            width: 100%!important;
-        }
+  .color-picker {
+    .hue-picker {
+      width: 100% !important;
     }
+    .demo {
+      &.disabled span {
+        transition: color 0.2s;
+        color: #6c757d !important;
+      }
+    }
+  }
 }
