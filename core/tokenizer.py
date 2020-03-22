@@ -110,7 +110,7 @@ class MarkupProtector:
                 for term in results:
                     i = len(cls.temp)
                     cls.temp.append(term)
-                    text = text.replace(term, f'{cls.PROTECTED_RULE_TMPL}{i}@@', 1)
+                    text = text.replace(term, "{mark}{i}@@".format(mark=cls.PROTECTED_RULE_TMPL, i=i), 1)
         return text
 
     @staticmethod
@@ -122,5 +122,5 @@ class MarkupProtector:
         # пробегаемся по особым правилам
         for i, rule_term in enumerate(cls.temp):
             # возвращаем старые текстовые значения из временного хранилища
-            text = text.replace(f'{cls.PROTECTED_RULE_TMPL}{i}@@', rule_term)
+            text = text.replace("{mark}{i}@@".format(mark=cls.PROTECTED_RULE_TMPL, i=i), rule_term)
         return text
