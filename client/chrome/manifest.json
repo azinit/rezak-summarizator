@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+  "name": "Rezak by Chao",
+  "description": "Text summarizer",
+  "version": "0.0.1",
+  "homepage_url": "https://github.com/martis-git/rezak-summarizator",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "browser_action": {
+    "default_title": "Rezak",
+    "default_popup": "index.html"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistence": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "all_frames": true,
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "storage"
+  ]
+}

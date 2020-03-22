@@ -8,7 +8,19 @@
 - По итоговой выборке `higlighter` окрашивает предложения
 """
 
+
+def read(filepath: str) -> str:
+    with open(filepath, 'r', encoding='utf-8') as fixture:
+        # compute total selection
+        return fixture.read()
+
+
 if __name__ == '__main__':
     from prototype_console import App
+    text = read('fixtures/it.web.rest-api.txt')
+    App.set_text(text)
+    App.reduce()
+    App.get_colors()
+    App.colorize()
+    # App.summarize(2)
 
-    App.run()

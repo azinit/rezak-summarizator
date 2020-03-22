@@ -2,25 +2,44 @@ from random import random
 from core import (
     create_total_selection,
     colors,
-    tokenize_sentences
+    tokenize_sentences,
+    select
 )
 
 
 class App:
-    @staticmethod
-    def run(**options):
-        # We can use random!
-        priorities = colors.get_priorities(random())
+    text = ''
+    selection = []
+    sentences = []
+    priorities = []
 
-        with open('fixtures/it.web.rest-api.txt', 'r', encoding='utf-8') as fixture:
-            # compute total selection
-            text = fixture.read()
-            text_sentences = tokenize_sentences(text)
-            selection = create_total_selection(text_sentences, {"ratio": 0.6})
-            # print results
-            for i, sentence in enumerate(text_sentences):
-                weight = selection[i]
-                priority = priorities[weight]
-                print(f'{i} [{weight}] {priority}{sentence}{colors.end}')
-                # print(f'{priority}{sentence}{fonts.end}')
-            print(selection, len(selection), sum(selection))
+    @staticmethod
+    def set_text(text: str):
+        App.text = text
+
+    @staticmethod
+    def reduce():
+        App.sentences = tokenize_sentences(App.text)
+        App.selection = create_total_selection(App.sentences, {"ratio": 0.6})
+
+    @staticmethod
+    def get_colors():
+        # We can use random!
+        App.priorities = colors.get_priorities(random())
+
+    @staticmethod
+    def colorize():
+        for i, sentence in enumerate(App.sentences):
+            weight = App.selection[i]
+            priority = App.priorities[weight]
+            print(f'{i} [{weight}] {priority}{sentence}{colors.end}')
+        print(App.selection, len(App.selection), sum(App.selection))
+
+    @staticmethod
+    def summarize(threshold: int):
+        summarized_sentences = select(App.sentences, App.selection, threshold)
+        for i, (sentence, weight) in enumerate(summarized_sentences):
+            priority = App.priorities[weight]
+            print(f'{i} [{weight}] {priority}{sentence}{colors.end}')
+        print(App.selection, len(App.selection), sum(App.selection))
+
