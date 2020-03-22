@@ -16,7 +16,7 @@ type Props = {
     sendResponse(12345)
 }) */
 
-const SettingsPage = (props: Props) => {
+const ToolsPage = (props: Props) => {
     const { color } = props;
 
     const onReduce = () => {
@@ -42,13 +42,15 @@ const SettingsPage = (props: Props) => {
         // });
     }
     return (
-        <div className='main-page'>
-            <div style={{ color }} className='bg-dark'>{color}</div>
+        <div className='main-page mt-3'>
             <div className="toolbar d-flex flex-column">
-                <Button className='mb-1' variant="primary" onClick={onReduce}>Save last text</Button>
+                <Button className='mb-1' variant="primary" onClick={() => console.log('onSaveText')} disabled>Save last text</Button>
+                <Button className='mb-1' variant="primary" onClick={() => console.log('onWatchHistory')} disabled>Watch history</Button>
+                <Button className='mb-1' variant="primary" onClick={() => console.log('onWatchHistory')} disabled>Feedback</Button>
                 <Button className='mb-1' variant="primary" onClick={onReduce}>/reduce</Button>
-                <Button className='mb-1' variant="info" onClick={getAccess}>get-access</Button>
+                <Button className='mb-1' variant="info" onClick={getAccess}>hack the page</Button>
             </div>
+            {/* <div style={{ color }} className='bg-dark'>{color}</div> */}
         </div>
     )
 }
@@ -64,5 +66,5 @@ const mapStateToProps = (state: IGlobalState) => {
 const mapDispatchToProps = (dispatch: any) => ({
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ToolsPage)
 

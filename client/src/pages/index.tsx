@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
-import SettingsPage from './settings';
+import ToolsPage from './tools';
 import FiltersPage from './filters';
 import AboutPage from './about';
 import Footer from './footer';
@@ -22,7 +22,7 @@ const App = () => {
         <div className="app-body">
           <Tabs id="rezak-controlled-tabs" activeKey={activeTab} onSelect={setActiveTab}>
             <Tab eventKey='filters' title='Filters' children={<FiltersPage />} />
-            <Tab eventKey='settings' title='Tools' children={<SettingsPage />} />
+            <Tab eventKey='tools' title='Tools' children={<ToolsPage />} />
             <Tab eventKey='about' title='About' children={<AboutPage />} />
           </Tabs>
         </div>
