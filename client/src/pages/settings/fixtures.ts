@@ -3,6 +3,9 @@ type ISentence = {
     weight: number;
 }
 
+/**
+ * @see https://www.lipsum.com/
+ */
 export const previewText: ISentence[] = [
     { content: "Lorem Ipsum is simply dummy text.", weight: 3 },
     { content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.", weight: 1 },

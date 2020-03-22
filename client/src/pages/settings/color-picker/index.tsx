@@ -7,7 +7,7 @@ import classNames from 'classnames'
 import './index.scss'
 
 /**
- * @see {@link https://casesandberg.github.io/react-color/}
+ * @see https://casesandberg.github.io/react-color/
  */
 const ColorPicker = () => {
     const [color, setColor] = React.useState<string>('#00fff7')

@@ -5,7 +5,7 @@ import { MAX_WEIGHT, previewText } from '../fixtures'
 import './index.scss'
 
 /**
- * @see {@link https://github.com/brownieboy/react-bootstrap-slider}
+ * @see https://github.com/brownieboy/react-bootstrap-slider
  */
 const WeightPicker = () => {
     const [enabled, setEnabled] = React.useState<boolean>(true)
