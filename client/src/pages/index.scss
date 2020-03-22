@@ -15,4 +15,18 @@ body {
   .title {
     color: rgb(97, 158, 167);
   }
+
+  .font-small {
+    font-size: 10px;
+  }
+  
+  .font-micro {
+    font-size: 6px;
+  }
+
+  .select-none {
+    outline: none;
+    user-select: none;
+  }
+  
 }

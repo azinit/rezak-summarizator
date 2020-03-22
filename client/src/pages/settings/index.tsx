@@ -1,11 +1,12 @@
 import React from 'react'
 import ColorPicker from './color-picker'
+import WeightPicker from './weight-picker'
 
 const SettingsPage = () => {
     return (
         <div>
             <ColorPicker/>
-            <p>Выбрать приоритет</p>
+            <WeightPicker/>
         </div>
     )
 }
