@@ -1,0 +1,23 @@
+.rezak-modal {
+    background-color: #333;
+    border-radius: 3px;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+}
+
+.rezak-modal-close {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 40px;
+    height: 40px;
+    padding: 3px;
+    color: #aaa;
+    cursor: pointer;
+    text-align: center;
+}
+
+.rezak-modal-close:hover {
+    color: white;
+}

@@ -9,9 +9,9 @@ const FetchService = {
         return fetch(`${this.api}/reduce`, {
             method: 'POST',
             headers: this.headers,
-            body: JSON.stringify({ text, sum_options: {ratio} })
+            body: JSON.stringify({text, sum_options: {ratio}})
         })
     }
-}
+};
 
 export default FetchService
