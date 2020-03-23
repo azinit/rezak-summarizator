@@ -3,7 +3,7 @@ import hex2rgb from 'hex2rgb'
 const DUMMY_COLOR = '#6C757D';
 
 const BLService: IBLService = {
-    // TODO: maxWeight => algosAmount?
+    // FIXME: modify logic (more bright)?
     getPalette(baseColor: string, maxWeight: number) {
         console.log('[REZAK-SERVICE] ::palette::', baseColor)
         return [...new Array(maxWeight + 1)].map((item, weight) => {

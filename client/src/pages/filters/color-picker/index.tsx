@@ -9,6 +9,7 @@ import { updateState } from '../../../store/user-settings'
 import { log } from '../../../chrome-tools'
 import './index.scss'
 import BackgroundService from '../../../service'
+import BLService from '../../../service/bl'
 
 // TODO: add get-colors impl from server
 
@@ -25,6 +26,7 @@ type Props = {
  */
 const ColorPicker = (props: Props) => {
     const { isColorMode, onUpdateState, color, state } = props;
+    const colors = BLService.getPalette(color, MAX_WEIGHT);
 
     const onChangeMode = (e) => {
         onUpdateState({ isColorMode: e.target.checked })
@@ -43,14 +45,6 @@ const ColorPicker = (props: Props) => {
         }
     }
 
-    const getColor = (weight: number) => {
-        if (weight === 0) {
-            return '#6C757D'
-        }
-        const [r, g, b] = hex2rgb(color).rgb
-        return `rgba(${r}, ${g}, ${b}, ${(weight / MAX_WEIGHT) + 0.4})`
-    }
-
     return (
         <div className={classNames('color-picker mt-2', { disabled: !isColorMode })}>
             <Form.Check
@@ -63,7 +57,7 @@ const ColorPicker = (props: Props) => {
             <div className="demo rounded-top p-2 bg-dark text-secondary outline-none font-micro select-none">
                 <samp>
                     {previewText.map(({ weight, content }, index) => (
-                        <span key={index} style={{ color: getColor(weight) }}>{content}</span>
+                        <span key={index} style={{ color: colors[weight] }}>{content}</span>
                     ))}
                 </samp>
             </div>
