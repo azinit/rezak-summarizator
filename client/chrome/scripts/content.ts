@@ -3,7 +3,6 @@
  */
 
 import messenger from './messengers/content-messenger'
-import Modal from 'modal-js/src/modal'
 import './content.css'
 
 let firedElement: Element = null;
@@ -20,12 +19,9 @@ messenger.registerHandler('HIGHLIGHT', ({text_sentences, total_selection}) => {
     const html = text_sentences.map((sentence, index) =>
         `<span style="color: ${colors[total_selection[index]]}">${sentence}</span>`
     ).join('\n');
-    let modal = new Modal(`<div class="rezak-modal" style="width: ${firedElement.clientWidth}px; top: ${firedElement.offsetTop}px">
-            ${html}</div>`, {
-        containerEl: firedElement,
-        activeClass: 'modal-active'
-    });
-    modal.show();
+    // @ts-ignore
+    let modal = createModalElement(html, firedElement);
+    firedElement.appendChild(modal);
     return "completed"
 });
 
@@ -35,4 +31,24 @@ document.addEventListener('contextmenu', (event) => {
 
 function getSelection(): Element | null {
     return window.getSelection().anchorNode?.parentElement
+}
+
+function createModalElement(innerHTML: string, containerEl: Element): Element {
+    const modal = document.createElement('div');
+    modal.className = 'rezak-modal';
+    modal.style.width = `${containerEl.clientWidth}px`;
+    // @ts-ignore
+    modal.style.top = `${containerEl.offsetTop}px`;
+    modal.innerHTML = innerHTML;
+    modal.appendChild(createModalCloseButton(() => modal.style.visibility = 'hidden'));
+    return modal;
+}
+
+function createModalCloseButton(close: () => void): Element {
+    const closeBtn = document.createElement('div');
+    closeBtn.innerHTML = '&#10006;';
+    closeBtn.className = 'rezak-modal-close';
+    closeBtn.title = 'Close';
+    closeBtn.onclick = close;
+    return closeBtn;
 }
