@@ -1,28 +1,38 @@
 /**
  * Здесь расположены все фоновые скрипты, работающие в контексте плагина
  */
-import {registerHandler, sendMessage} from './backgroundHelper'
+import messenger from './messengers/background-messenger'
 import fetchService from './fetch'
- 
-registerHandler('UPDATE_USER_SETTINGS', (data: IUserSettingsState, sendResponse) => {
+
+/**
+ * Обработчик обновления конфига пользователя
+ * @handler UPDATE_USER_SETTINGS
+ */
+messenger.registerHandler('UPDATE_USER_SETTINGS', (data) => {
     console.log('[REZAK-BACK] Update config', data);
     // FIXME: Да да, куда без него ;(
     chrome.storage.sync.set({ "rezak-user-settings": data }, () => {
         //  A data saved callback omg so fancy
         // FIXME: recall highlight?
     });
-})
+});
 
+/**
+ * Обработчик клика пункта КМ
+ * @handler CONTEXT_MENU_ON_CLICK
+ */
 function onContextActionClick(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) {
-    sendMessage('CONTEXT_ACTION_CLICK', info.selectionText)
-        // FIXME:
-        .then((response) => fetchService.reduce(info.selectionText as string))
+    messenger.sendMessage('CONTEXT_ACTION_CLICK', info.selectionText)
+        .then((response) => fetchService.reduce(response as string))
         .then((res) => res.json())
-        .then((response: HiglightProps) => sendMessage('HIGHLIGHT', response))
-        .then(console.log)
-        //.catch(console.error)
+        .then((response: HiglightProps) => messenger.sendMessage('HIGHLIGHT', response))
+        .then((...args) => console.log('[REZAK-BACK] onContext (response)', ...args))
+    //.catch(console.error)
 }
 
+/**
+ * Создание КМ
+ */
 chrome.contextMenus.create({
     id: 'rezak-sum',
     title: 'Сократить',
@@ -31,4 +41,4 @@ chrome.contextMenus.create({
     ],
     /** @see background.content.example.ts */
     onclick: onContextActionClick
-})
+});
