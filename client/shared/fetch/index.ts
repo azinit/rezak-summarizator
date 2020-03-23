@@ -1,7 +1,3 @@
-import { selection, summary, text, text_sentences, colors, sum_sentences } from './fixtures'
-
-// TODO: connect to server
-
 const FetchService: IFetchService = {
     api: "http://80.211.47.203:29500",
     headers: Object.freeze({
@@ -20,11 +16,11 @@ const FetchService: IFetchService = {
         });
     },
     /** Обработчик по сокращению текста */
-    reduce(text: string, options?: ISumOptions) {
+    reduce(text: string, ratio: number = 0.5) {
         return fetch(`${this.api}/reduce`, {
             method: 'POST',
             headers: this.headers,
-            body: JSON.stringify({ text })
+            body: JSON.stringify({ text, sum_options: { ratio } })
         })
     }
 }

@@ -3,13 +3,16 @@ import ReactBootstrapSlider from 'react-bootstrap-slider';
 import { Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { MAX_WEIGHT, previewText } from '../fixtures'
-import { updateState } from '../../../store/user-settings';
+import { updateState } from '../../../../shared/store/user-settings';
 import './index.scss'
+import BackgroundService from '../../../../shared/service';
+import BLService from '../../../../shared/service/bl';
 
 // TODO: add percent to weight-picker
 type Props = {
     isSummarizeMode: boolean;
     weight: number;
+    state: IUserSettingsState;
     onUpdateState: (nextState: Partial<IUserSettingsState>) => void;
 }
 
@@ -17,9 +20,16 @@ type Props = {
  * @see https://github.com/brownieboy/react-bootstrap-slider
  */
 const WeightPicker = (props: Props) => {
-    const { weight, isSummarizeMode, onUpdateState } = props;
+    const { weight, isSummarizeMode, onUpdateState, state } = props;
     const MIN_VALUE = 0
     const MAX_VALUE = 100;
+
+    /** text reducing logic */
+    const text_sentences = previewText.map(s => s.content);
+    const total_selection = previewText.map(s => s.weight);
+    // FIXME: remove later
+    const threshold = ( weight / MAX_VALUE ) * MAX_WEIGHT;
+    const reducedText = BLService.reduceSentences(text_sentences, total_selection, threshold)
 
     const onChangeMode = (e) => {
         const nextEnabled = e.target.checked;
@@ -31,13 +41,10 @@ const WeightPicker = (props: Props) => {
     }
 
     const onChangeWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onUpdateState({ weight: +e.target.value })
-    }
-
-    const getSentence = (sWeight: number, sContent: string) => {
-        const ratio = weight / MAX_VALUE;
-        const threshold = ratio * MAX_WEIGHT;
-        return (sWeight >= threshold) ? sContent : ''
+        const weight = +e.target.value;
+        onUpdateState({ weight })
+        // FIXME:
+        BackgroundService.pushState({ ...state, weight })
     }
 
     return (
@@ -56,8 +63,8 @@ const WeightPicker = (props: Props) => {
             />
             <div className="demo rounded-top bg-dark text-light p-2 outline-none font-micro select-none">
                 <samp>
-                    {previewText.map(({ weight, content }, index) => (
-                        <span key={index}>{getSentence(weight, content)}</span>
+                    {reducedText.map(({ content }, index) => (
+                        <span key={index}>{content}</span>
                     ))}
                 </samp>
             </div>
@@ -78,7 +85,9 @@ const WeightPicker = (props: Props) => {
 
 const mapStateToProps = (state: IGlobalState) => ({
     isSummarizeMode: state.userSettings.isSummarizeMode,
-    weight: state.userSettings.weight
+    weight: state.userSettings.weight,
+    // FIXME:
+    state: state.userSettings
 })
 
 const mapDispatchToProps = (dispatch: any) => ({

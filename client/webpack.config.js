@@ -15,7 +15,7 @@ const config = {
   mode: "development",
   devtool: "cheap-module-source-map",
   entry: {
-    app: path.join(__dirname, "./src/index.tsx"),
+    popup: path.join(__dirname, "./popup/index.tsx"),
     background: path.join(__dirname, "./chrome/scripts/background.ts"),
     content: path.join(__dirname, "./chrome/scripts/content.ts")
   },
@@ -36,7 +36,7 @@ const config = {
       },
       manifest: "manifest.json",
       filename: "index.html",
-      template: "./src/index.html",
+      template: "./popup/index.html",
       hash: true
     }),
     new CopyPlugin([

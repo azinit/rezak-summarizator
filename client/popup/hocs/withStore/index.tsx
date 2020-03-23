@@ -1,6 +1,6 @@
 import React from 'react'
 import { PersistGate } from 'redux-persist/integration/react'
-import PersistStore from '../../store'
+import PersistStore from '../../../shared/store'
 import { Provider } from 'react-redux'
 
 const { store, persistor } = PersistStore()

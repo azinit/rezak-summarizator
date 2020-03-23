@@ -5,14 +5,19 @@ import hex2rgb from 'hex2rgb'
 import { Form } from 'react-bootstrap'
 import { MAX_WEIGHT, previewText } from '../fixtures'
 import classNames from 'classnames'
-import { updateState } from '../../../store/user-settings'
+import { updateState } from '../../../../shared/store/user-settings'
+import { log } from '../../../chrome-tools'
 import './index.scss'
+import BackgroundService from '../../../../shared/service'
+import BLService from '../../../../shared/service/bl'
 
 // TODO: add get-colors impl from server
 
 type Props = {
     isColorMode: boolean;
     color: string;
+    // FIXME:
+    state: IUserSettingsState;
     onUpdateState: (nextState: Partial<IUserSettingsState>) => void;
 }
 
@@ -20,7 +25,8 @@ type Props = {
  * @see https://casesandberg.github.io/react-color/
  */
 const ColorPicker = (props: Props) => {
-    const { isColorMode, onUpdateState, color } = props;
+    const { isColorMode, onUpdateState, color, state } = props;
+    const colors = BLService.getPalette(color, MAX_WEIGHT);
 
     const onChangeMode = (e) => {
         onUpdateState({ isColorMode: e.target.checked })
@@ -32,12 +38,11 @@ const ColorPicker = (props: Props) => {
         }
     };
 
-    const getColor = (weight: number) => {
-        if (weight === 0) {
-            return '#6C757D'
+    const onChangeColorComplete = (nextColor) => {
+        if (isColorMode) {
+            // onUpdateState({ color: nextColor.hex })
+            BackgroundService.pushState(state)
         }
-        const [r, g, b] = hex2rgb(color).rgb
-        return `rgba(${r}, ${g}, ${b}, ${(weight / MAX_WEIGHT) + 0.4})`
     }
 
     return (
@@ -52,18 +57,23 @@ const ColorPicker = (props: Props) => {
             <div className="demo rounded-top p-2 bg-dark text-secondary outline-none font-micro select-none">
                 <samp>
                     {previewText.map(({ weight, content }, index) => (
-                        <span key={index} style={{ color: getColor(weight) }}>{content}</span>
+                        <span key={index} style={{ color: colors[weight] }}>{content}</span>
                     ))}
                 </samp>
             </div>
-            <HuePicker color={color} onChange={onChangeColor} />
+            <HuePicker
+                color={color}
+                onChange={onChangeColor}
+                onChangeComplete={onChangeColorComplete}
+            />
         </div>
     )
 }
 
 const mapStateToProps = (state: IGlobalState) => ({
     isColorMode: state.userSettings.isColorMode,
-    color: state.userSettings.color
+    color: state.userSettings.color,
+    state: state.userSettings
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
