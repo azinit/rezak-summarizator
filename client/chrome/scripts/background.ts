@@ -4,8 +4,8 @@
 import messenger from './messengers/background-messenger'
 import fetchService from './fetch'
 
-messenger.registerHandler('NEW_STATE', (data, sendResponse) => {
-    console.log(data);
+messenger.registerHandler('NEW_STATE', (data) => {
+    console.log('NEW_STATE', data);
 });
 
 function onContextActionClick(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) {
@@ -13,7 +13,7 @@ function onContextActionClick(info: chrome.contextMenus.OnClickData, tab: chrome
         .then((response) => fetchService.reduce(response as string))
         .then((res) => res.json())
         .then((response) => messenger.sendMessage('HIGHLIGHT', response))
-        .then(console.log)
+        .then((...args) => console.log('response', ...args))
     //.catch(console.error)
 }
 
