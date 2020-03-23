@@ -1,10 +1,22 @@
 /**
  * Здесь расположены все фоновые скрипты, работающие в контексте плагина
  */
-const bkg = chrome.extension.getBackgroundPage()
-const log = (...args) => bkg.console.log('[REZAK:BACK]', ...args)
+import {registerHandler, sendMessage} from './backgroundHelper'
+import fetchService from './fetch'
 
-log("Background scripts loaded")
+ 
+registerHandler('NEW_STATE', (data, sendResponse) => {
+    console.log(data);
+})
+
+function onContextActionClick(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) {
+    sendMessage('CONTEXT_ACTION_CLICK', info.selectionText)
+        .then((response) => fetchService.reduce(response as string))
+        .then((res) => res.json())
+        .then((response) => sendMessage('HIGHLIGHT', response))
+        .then(console.log)
+        //.catch(console.error)
+}
 
 chrome.contextMenus.create({
     id: 'rezak-sum',
@@ -13,27 +25,5 @@ chrome.contextMenus.create({
         'selection'
     ],
     /** @see background.content.example.ts */
-    onclick: (data, tab) => {
-        log('Selected: ', data.selectionText)
-        chrome.runtime.sendMessage({
-            type: 'REDUCE_TEXT',
-            payload: data.selectionText
-        }, (response) => {
-            log('You did it!', response)
-        })
-        // chrome.tabs.create({  
-        //   url: "http://www.google.com/search?q=" + data.selectionText
-        // });
-    }
+    onclick: onContextActionClick
 })
-
-
-// chrome.contextMenus.onClicked.addListener((data) => {
-//     switch(data.menuItemId) {
-//         case 'rezak-sum':
-//             console.log('REZAK!!!', data)
-//             break;
-//         default:
-//             console.log('Oops', data)
-//     }
-// })

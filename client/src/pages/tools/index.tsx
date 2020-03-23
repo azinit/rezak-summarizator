@@ -10,12 +10,12 @@ type Props = {
     color: string;
 };
 
-if (chrome) {
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        log('New request discovered:', request)
-        sendResponse(12345)
-    })
-};
+// if (chrome) {
+//     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+//         log('New request discovered:', request)
+//         sendResponse(12345)
+//     })
+// };
 
 const ToolsPage = (props: Props) => {
     const { color } = props;
@@ -58,7 +58,7 @@ const ToolsPage = (props: Props) => {
 
 const mapStateToProps = (state: IGlobalState) => {
     // FIXME: dev   
-    console.log('> STATE <', state.userSettings)
+    // console.log('> STATE <', state.userSettings)
     return {
         color: state.userSettings.color
     }

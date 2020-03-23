@@ -9,6 +9,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const baseManifest = require("./chrome/manifest.json");
 const WebpackExtensionManifestPlugin = require("webpack-extension-manifest-plugin");
+const BomPlugin = require("webpack-utf8-bom");
+
 const config = {
   mode: "development",
   devtool: "cheap-module-source-map",
@@ -47,7 +49,8 @@ const config = {
       config: {
         base: baseManifest
       }
-    })
+    }),
+    new BomPlugin(true)
   ],
   module: {
     rules: [
