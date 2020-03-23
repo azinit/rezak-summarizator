@@ -1,3 +1,8 @@
 declare type IBackgroundService = {
-    pushState: (state: IUserSettingsState) => void
+    // FIXME:
+    pushState: (nextState: IUserSettingsState) => void;
+}
+declare type IBLService = {
+    getPalette: (baseColor: string, maxWeight: number) => string[];
+    reduceSentences: (sentences: string[], selection: number[], threshold: number) => string[];
 }

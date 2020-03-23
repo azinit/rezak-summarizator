@@ -6,13 +6,17 @@ import { Form } from 'react-bootstrap'
 import { MAX_WEIGHT, previewText } from '../fixtures'
 import classNames from 'classnames'
 import { updateState } from '../../../store/user-settings'
+import { log } from '../../../chrome-tools'
 import './index.scss'
+import BackgroundService from '../../../service'
 
 // TODO: add get-colors impl from server
 
 type Props = {
     isColorMode: boolean;
     color: string;
+    // FIXME:
+    state: IUserSettingsState;
     onUpdateState: (nextState: Partial<IUserSettingsState>) => void;
 }
 
@@ -20,7 +24,7 @@ type Props = {
  * @see https://casesandberg.github.io/react-color/
  */
 const ColorPicker = (props: Props) => {
-    const { isColorMode, onUpdateState, color } = props;
+    const { isColorMode, onUpdateState, color, state } = props;
 
     const onChangeMode = (e) => {
         onUpdateState({ isColorMode: e.target.checked })
@@ -31,6 +35,13 @@ const ColorPicker = (props: Props) => {
             onUpdateState({ color: nextColor.hex })
         }
     };
+
+    const onChangeColorComplete = (nextColor) => {
+        if (isColorMode) {
+            // onUpdateState({ color: nextColor.hex })
+            BackgroundService.pushState(state)
+        }
+    }
 
     const getColor = (weight: number) => {
         if (weight === 0) {
@@ -56,14 +67,19 @@ const ColorPicker = (props: Props) => {
                     ))}
                 </samp>
             </div>
-            <HuePicker color={color} onChange={onChangeColor} />
+            <HuePicker
+                color={color}
+                onChange={onChangeColor}
+                onChangeComplete={onChangeColorComplete}
+            />
         </div>
     )
 }
 
 const mapStateToProps = (state: IGlobalState) => ({
     isColorMode: state.userSettings.isColorMode,
-    color: state.userSettings.color
+    color: state.userSettings.color,
+    state: state.userSettings
 })
 
 const mapDispatchToProps = (dispatch: any) => ({

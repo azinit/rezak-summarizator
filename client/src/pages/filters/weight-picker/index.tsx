@@ -5,11 +5,13 @@ import { connect } from 'react-redux'
 import { MAX_WEIGHT, previewText } from '../fixtures'
 import { updateState } from '../../../store/user-settings';
 import './index.scss'
+import BackgroundService from '../../../service';
 
 // TODO: add percent to weight-picker
 type Props = {
     isSummarizeMode: boolean;
     weight: number;
+    state: IUserSettingsState;
     onUpdateState: (nextState: Partial<IUserSettingsState>) => void;
 }
 
@@ -17,7 +19,7 @@ type Props = {
  * @see https://github.com/brownieboy/react-bootstrap-slider
  */
 const WeightPicker = (props: Props) => {
-    const { weight, isSummarizeMode, onUpdateState } = props;
+    const { weight, isSummarizeMode, onUpdateState, state } = props;
     const MIN_VALUE = 0
     const MAX_VALUE = 100;
 
@@ -31,7 +33,10 @@ const WeightPicker = (props: Props) => {
     }
 
     const onChangeWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onUpdateState({ weight: +e.target.value })
+        const weight = +e.target.value;
+        onUpdateState({ weight })
+        // FIXME:
+        BackgroundService.pushState({ ...state, weight })
     }
 
     const getSentence = (sWeight: number, sContent: string) => {
@@ -78,7 +83,9 @@ const WeightPicker = (props: Props) => {
 
 const mapStateToProps = (state: IGlobalState) => ({
     isSummarizeMode: state.userSettings.isSummarizeMode,
-    weight: state.userSettings.weight
+    weight: state.userSettings.weight,
+    // FIXME:
+    state: state.userSettings
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
