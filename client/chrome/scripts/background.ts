@@ -2,7 +2,7 @@
  * Здесь расположены все фоновые скрипты, работающие в контексте плагина
  */
 import messenger from './messengers/background-messenger'
-import fetchService from './fetch'
+import fetchService from '../../shared/fetch'
 
 /**
  * Обработчик обновления конфига пользователя
@@ -23,7 +23,8 @@ messenger.registerHandler('UPDATE_USER_SETTINGS', (data) => {
  */
 function onContextActionClick(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) {
     messenger.sendMessage('CONTEXT_ACTION_CLICK', info.selectionText)
-        .then((response) => fetchService.reduce(response as string))
+        // FIXME:
+        .then((response: string) => fetchService.reduce(response || info.selectionText))
         .then((res) => res.json())
         .then((response: HiglightProps) => messenger.sendMessage('HIGHLIGHT', response))
         .then((...args) => console.log('[REZAK-BACK] onContext (response)', ...args))

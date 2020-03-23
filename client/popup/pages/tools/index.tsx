@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Fetch from '../../fetch'
+import Fetch from '../../../shared/fetch'
 import { Button } from 'react-bootstrap'
 import { log } from '../../chrome-tools'
-import { text } from '../../fetch/fixtures'
-import BackgroundService from '../../service'
+import { text } from '../../../shared/fetch/fixtures'
+import BackgroundService from '../../../shared/service'
 import './index.scss'
 
 type Props = {

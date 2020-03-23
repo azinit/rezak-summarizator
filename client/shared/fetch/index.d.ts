@@ -15,5 +15,5 @@ declare type IFetchService = {
     headers: FetchHeaders;
     api: string;
     mockFetch:<T = Object> (response: T, options?: IFetchOtions) => Promise<T>
-    reduce: (text: string, options?: ISumOptions) => Promise<Response>;
+    reduce: (text: string, ratio?: number) => Promise<Response>;
 }

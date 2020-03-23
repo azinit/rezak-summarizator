@@ -3,10 +3,10 @@ import ReactBootstrapSlider from 'react-bootstrap-slider';
 import { Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { MAX_WEIGHT, previewText } from '../fixtures'
-import { updateState } from '../../../store/user-settings';
+import { updateState } from '../../../../shared/store/user-settings';
 import './index.scss'
-import BackgroundService from '../../../service';
-import BLService from '../../../service/bl';
+import BackgroundService from '../../../../shared/service';
+import BLService from '../../../../shared/service/bl';
 
 // TODO: add percent to weight-picker
 type Props = {

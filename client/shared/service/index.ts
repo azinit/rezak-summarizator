@@ -1,5 +1,5 @@
 // import PersistedStore from '../store'
-import { log } from '../chrome-tools'
+import { log } from '../../popup/chrome-tools'
 
 const BackgroundService: IBackgroundService = {
     pushState(nextState: IUserSettingsState) {

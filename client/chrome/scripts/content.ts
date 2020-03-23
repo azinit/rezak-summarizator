@@ -2,7 +2,7 @@
  * Здесь расположены все скрипты, имеющие доступ к контенту страницы
  */
 import messenger from './messengers/content-messenger'
-import BLService from '../../src/service/bl';
+import BLService from '../../shared/service/bl';
 import './content.css'
 
 let firedElement: Element = null;
