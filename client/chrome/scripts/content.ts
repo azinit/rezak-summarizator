@@ -31,8 +31,8 @@ registerHandler('HIGHLIGHT', (props: HiglightProps, sendResponse) => {
       const reducedSentences = BLService.reduceSentences(text_sentences, total_selection, threshold)
       /** highlighting */
       console.log('To be highlighted', text_sentences);
-      firedElement.innerHTML = reducedSentences.map((sentence, index) =>
-         `<span style="color: ${colors[total_selection[index]]}">${sentence}</span>`
+      firedElement.innerHTML = reducedSentences.map(({ content, weight }) =>
+         `<span style="color: ${colors[weight]}">${content}</span>`
       ).join('\n');
    });
 

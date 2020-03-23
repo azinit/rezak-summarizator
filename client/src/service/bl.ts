@@ -16,7 +16,9 @@ const BLService: IBLService = {
     },
     reduceSentences(sentences: string[], selection: number[], threshold: number) {
         console.log('[REZAK-SERVICE] ::reduce::', threshold)
-        return sentences.filter((s, i) => selection[i] >= threshold)
+        return sentences
+            .map((s, i) => ({ content: s, weight: selection[i]}))
+            .filter(({ weight }) => weight >= threshold)
     }
 }
 

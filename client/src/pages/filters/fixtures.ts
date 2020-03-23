@@ -1,8 +1,3 @@
-type ISentence = {
-    content: string;
-    weight: number;
-}
-
 /**
  * @see https://www.lipsum.com/
  */
