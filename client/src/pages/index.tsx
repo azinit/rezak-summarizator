@@ -10,7 +10,7 @@ import "./index.scss";
 // TODO: add popup on page
 
 const App = () => {
-  const [activeTab, setActiveTab] = React.useState('tools')
+  const [activeTab, setActiveTab] = React.useState('filters')
   return (
     <div className='rezak-app app'>
       <div className="app-header text-center">
