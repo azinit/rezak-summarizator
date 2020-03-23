@@ -1,5 +1,3 @@
-import { rejects } from "assert";
-
 const handlers = {};
 
 function registerHandler(type: string, handler: (data: any, sendResponse?: (response: any) => void) => void) {

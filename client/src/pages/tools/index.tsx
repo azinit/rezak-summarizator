@@ -4,10 +4,11 @@ import Fetch from '../../fetch'
 import { Button } from 'react-bootstrap'
 import { log } from '../../chrome-tools'
 import { text } from '../../fetch/fixtures'
+import BackgroundService from '../../service'
 import './index.scss'
 
 type Props = {
-    color: string;
+    userSettings: IUserSettingsState;
 };
 
 // if (chrome) {
@@ -18,7 +19,7 @@ type Props = {
 // };
 
 const ToolsPage = (props: Props) => {
-    const { color } = props;
+    const { userSettings } = props;
 
     const onReduce = () => {
         Fetch.reduce(text)
@@ -42,13 +43,19 @@ const ToolsPage = (props: Props) => {
             });
         }
     }
+    const updateConfig = () => {
+        if (chrome) {
+            BackgroundService.pushState(userSettings)
+        }
+    }
     return (
         <div className='main-page mt-3'>
             <div className="toolbar d-flex flex-column">
-                <Button className='mb-1' variant="primary" onClick={() => console.log('onSaveText')} disabled>Save last text</Button>
-                <Button className='mb-1' variant="primary" onClick={() => console.log('onWatchHistory')} disabled>Watch history</Button>
-                <Button className='mb-1' variant="primary" onClick={() => console.log('onWatchHistory')} disabled>Feedback</Button>
+                <Button className='mb-1' variant="primary" disabled>Save last text</Button>
+                <Button className='mb-1' variant="primary" disabled>Watch history</Button>
+                <Button className='mb-1' variant="primary" disabled>Feedback</Button>
                 <Button className='mb-1' variant="primary" onClick={onReduce}>/reduce</Button>
+                <Button className='mb-1' variant="primary" onClick={updateConfig}>Send config</Button>
                 <Button className='mb-1' variant="info" onClick={getAccess}>hack the page</Button>
             </div>
             {/* <div style={{ color }} className='bg-dark'>{color}</div> */}
@@ -60,7 +67,7 @@ const mapStateToProps = (state: IGlobalState) => {
     // FIXME: dev   
     // console.log('> STATE <', state.userSettings)
     return {
-        color: state.userSettings.color
+        userSettings: state.userSettings
     }
 }
 

@@ -5,8 +5,8 @@ import {registerHandler, sendMessage} from './backgroundHelper'
 import fetchService from './fetch'
 
  
-registerHandler('NEW_STATE', (data, sendResponse) => {
-    console.log(data);
+registerHandler('UPDATE_USER_SETTINGS', (data, sendResponse) => {
+    console.log('UPD:', data);
 })
 
 function onContextActionClick(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) {

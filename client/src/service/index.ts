@@ -1,10 +1,10 @@
-const service: IBackgroundService = {
+const BackgroundService: IBackgroundService = {
     pushState(state: IUserSettingsState) {
         chrome.runtime.sendMessage({
-            type: 'NEW_STATE',
+            type: 'UPDATE_USER_SETTINGS',
             payload: state,
         });
     }
 }
 
-export default service
+export default BackgroundService
