@@ -10,15 +10,19 @@
     position: absolute;
     top: 4px;
     right: 4px;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     padding: 3px;
     color: #aaaaaa77;
     cursor: pointer;
     text-align: center;
     transform: scale(0.8);
     background-color: #29292977;
-    transition: color .2s
+    transition: color .2s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .rezak-modal-close:hover {
