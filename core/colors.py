@@ -57,7 +57,7 @@ def get_priorities(h):
     pr2 = hsv2color(h, s2, v)
     pr3 = hsv2color(h, s3, v)
 
-    return [excess, dummy, pr0, pr1, pr2, pr3, pr3, pr3]
+    return [excess, dummy, pr0, pr1, pr1, pr2, pr2, pr3, pr3]
 
 
 def get_priorities_hex(h: float):
@@ -67,4 +67,4 @@ def get_priorities_hex(h: float):
     pr2 = hsv2hex(h, s2, v)
     pr3 = hsv2hex(h, s3, v)
 
-    return [excess, pr0, pr1, pr2, pr3, pr3, pr3, pr3]
+    return [excess, pr0, pr0, pr1, pr1, pr2, pr2, pr3, pr3]
