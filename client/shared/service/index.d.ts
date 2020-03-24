@@ -7,6 +7,6 @@ declare type ISentence = {
     weight: number;
 }
 declare type IBLService = {
-    getPalette: (baseColor: string, maxWeight: number) => string[];
-    reduceSentences: (sentences: string[], selection: number[], threshold: number) => ISentence[];
+    getPalette: (baseColor: string, maxWeight: number, isColorMode: boolean) => string[];
+    reduceSentences: (sentences: ISentence[], threshold: number, isSummarizeMode: boolean) => ISentence[];
 }

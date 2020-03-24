@@ -3,8 +3,15 @@
         .slider {
             width: 100%!important;
         }
-    }
-    .demo {
-        height: 70px;
+        .demo {
+            height: 70px;
+        }
+        .header {
+            .percentage-label {
+                position: absolute;
+                top: 0;
+                right: -100px;
+            }
+        }
     }
 }

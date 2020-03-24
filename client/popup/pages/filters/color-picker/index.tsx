@@ -1,15 +1,13 @@
 import React from 'react'
 import { HuePicker } from 'react-color'
 import { connect } from 'react-redux'
-import hex2rgb from 'hex2rgb'
 import { Form } from 'react-bootstrap'
-import { MAX_WEIGHT, previewText } from '../fixtures'
 import classNames from 'classnames'
+import { MAX_WEIGHT, previewText } from '../fixtures'
 import { updateState } from '../../../../shared/store/user-settings'
-import { log } from '../../../chrome-tools'
-import './index.scss'
 import BackgroundService from '../../../../shared/service'
 import BLService from '../../../../shared/service/bl'
+import './index.scss'
 
 // TODO: add get-colors impl from server
 
@@ -26,10 +24,12 @@ type Props = {
  */
 const ColorPicker = (props: Props) => {
     const { isColorMode, onUpdateState, color, state } = props;
-    const colors = BLService.getPalette(color, MAX_WEIGHT);
+    const colors = BLService.getPalette(color, MAX_WEIGHT, isColorMode);
 
     const onChangeMode = (e) => {
-        onUpdateState({ isColorMode: e.target.checked })
+        const nextMode = e.target.checked;
+        onUpdateState({ isColorMode: nextMode })
+        BackgroundService.pushState({ ...state, isColorMode: nextMode })
     }
 
     const onChangeColor = (nextColor) => {

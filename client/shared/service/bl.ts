@@ -6,8 +6,11 @@ const DUMMY_COLOR = '#dbe1e6';
 
 const BLService: IBLService = {
     // FIXME: modify logic (more bright)?
-    getPalette(baseColor: string, maxWeight: number) {
+    getPalette(baseColor: string, maxWeight: number, isColorMode: boolean) {
         console.log('[REZAK-SERVICE] ::palette::', baseColor)
+        if (!isColorMode) {
+            return [...new Array(maxWeight + 1)].map(i => DUMMY_COLOR)
+        }
         return [...new Array(maxWeight + 1)].map((item, weight) => {
             if (weight === 0) return EXCESS_COLOR;
             if (weight === 1) return DUMMY_COLOR;
@@ -19,11 +22,12 @@ const BLService: IBLService = {
             return `#${adaptedColorHEX}`;
         })
     },
-    reduceSentences(sentences: string[], selection: number[], threshold: number) {
+    reduceSentences(sentences: ISentence[], threshold: number, isSummarizeMode: boolean) {
         console.log('[REZAK-SERVICE] ::reduce::', threshold)
-        return sentences
-            .map((s, i) => ({ content: s, weight: selection[i] }))
-            .filter(({ weight }) => weight >= threshold)
+        if (!isSummarizeMode) {
+            return sentences;
+        }
+        return sentences.filter(({ weight }) => weight >= threshold)
     }
 }
 

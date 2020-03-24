@@ -31,12 +31,12 @@ messenger.registerHandler('HIGHLIGHT', (props: HiglightProps) => {
         console.log('[REZAK:CONTENT] Config:', config)
         const maxWeight = Math.max(...total_selection)
         /** get colors */
-        const { color, ratio } = config;
-        // FIXME: weight => ratio
-        const colors = BLService.getPalette(color, maxWeight)
+        const { color, ratio, isColorMode, isSummarizeMode } = config;
+        const colors = BLService.getPalette(color, maxWeight, isColorMode)
         const threshold = ratio * maxWeight;
         /** reducing */
-        const reducedSentences = BLService.reduceSentences(text_sentences, total_selection, threshold)
+        const sentences: ISentence[] = text_sentences.map((s, i) => ({ content: s, weight: total_selection[i] }))
+        const reducedSentences = BLService.reduceSentences(sentences, threshold, isSummarizeMode)
         /** highlighting */
         console.log('[REACT-CONTENT] to be highlighted', text_sentences);
         const html = reducedSentences.map(({ content, weight }) =>

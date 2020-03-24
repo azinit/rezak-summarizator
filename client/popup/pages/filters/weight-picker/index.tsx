@@ -4,10 +4,9 @@ import { Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { MAX_WEIGHT, previewText } from '../fixtures'
 import { updateState } from '../../../../shared/store/user-settings';
-import './index.scss'
 import BackgroundService from '../../../../shared/service';
 import BLService from '../../../../shared/service/bl';
-import { log } from '../../../chrome-tools'
+import './index.scss'
 
 // TODO: add percent to weight-picker
 type Props = {
@@ -25,22 +24,19 @@ const WeightPicker = (props: Props) => {
     const MIN_VALUE = 0
     const MAX_VALUE = 100;
     const CUR_VALUE = Math.ceil(ratio * MAX_VALUE);
-    log(`[${MIN_VALUE}-${MAX_VALUE}] >>> ${CUR_VALUE} (${ratio})`)
 
     /** text reducing logic */
-    const text_sentences = previewText.map(s => s.content);
-    const total_selection = previewText.map(s => s.weight);
     // FIXME: remove later
     const threshold = ratio * MAX_WEIGHT;
-    const reducedText = BLService.reduceSentences(text_sentences, total_selection, threshold)
+    const reducedText = BLService.reduceSentences(previewText, threshold, isSummarizeMode)
 
     const onChangeMode = (e) => {
         const nextEnabled = e.target.checked;
         if (!nextEnabled) {
-            // FIXME: remove?
             onUpdateState({ ratio: 0 })
         }
         onUpdateState({ isSummarizeMode: nextEnabled })
+        BackgroundService.pushState({ ...state, isSummarizeMode: nextEnabled })
     }
 
     const onChangeWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,9 +52,10 @@ const WeightPicker = (props: Props) => {
                 type='switch'
                 id='reduce-enabled'
                 label={
-                    <div className="mb-1 select-none">
+                    <div className="mb-1 select-none header">
                         <div className="h6 mb-0">Reduction intensity</div>
                         <div className="text-muted font-small">(from origin - to important sentences)</div>
+                        <div className="text-secondary percentage-label">{CUR_VALUE}%</div>
                     </div>
                 }
                 onChange={onChangeMode}
