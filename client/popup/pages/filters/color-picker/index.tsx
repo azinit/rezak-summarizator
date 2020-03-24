@@ -40,8 +40,8 @@ const ColorPicker = (props: Props) => {
 
     const onChangeColorComplete = (nextColor) => {
         if (isColorMode) {
-            // onUpdateState({ color: nextColor.hex })
-            BackgroundService.pushState(state)
+            onUpdateState({ color: nextColor.hex })
+            BackgroundService.pushState({ ...state, color: nextColor.hex })
         }
     }
 
