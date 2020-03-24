@@ -2,7 +2,7 @@
  * Здесь расположены все скрипты, имеющие доступ к контенту страницы
  */
 import messenger from './messengers/content-messenger'
-import BLService from '../../shared/service/bl';
+import BLService from '../../shared/service';
 import { userSettingsState as initialConfig } from '../../shared/store/user-settings'
 import './content.css'
 

@@ -3,24 +3,23 @@ import ReactBootstrapSlider from 'react-bootstrap-slider';
 import { Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { MAX_WEIGHT, previewText } from '../fixtures'
-import { updateState } from '../../../../shared/store/user-settings';
-import BackgroundService from '../../../../shared/service';
-import BLService from '../../../../shared/service/bl';
+import { updateState, pushState } from '../../../../shared/store/user-settings';
+import BLService from '../../../../shared/service';
 import './index.scss'
 
 // TODO: add percent to weight-picker
 type Props = {
     isSummarizeMode: boolean;
     ratio: number;
-    state: IUserSettingsState;
     onUpdateState: (nextState: Partial<IUserSettingsState>) => void;
+    onPushState: () => void;
 }
 
 /**
  * @see https://github.com/brownieboy/react-bootstrap-slider
  */
 const WeightPicker = (props: Props) => {
-    const { ratio, isSummarizeMode, onUpdateState, state } = props;
+    const { ratio, isSummarizeMode, onPushState, onUpdateState } = props;
     const MIN_VALUE = 0
     const MAX_VALUE = 100;
     const CUR_VALUE = Math.ceil(ratio * MAX_VALUE);
@@ -36,14 +35,13 @@ const WeightPicker = (props: Props) => {
             onUpdateState({ ratio: 0 })
         }
         onUpdateState({ isSummarizeMode: nextEnabled })
-        BackgroundService.pushState({ ...state, isSummarizeMode: nextEnabled })
+        onPushState();
     }
 
     const onChangeWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
         const ratio = +e.target.value / MAX_VALUE;
         onUpdateState({ ratio })
-        // FIXME:
-        BackgroundService.pushState({ ...state, ratio })
+        onPushState();
     }
 
     return (
@@ -86,12 +84,11 @@ const WeightPicker = (props: Props) => {
 const mapStateToProps = (state: IGlobalState) => ({
     isSummarizeMode: state.userSettings.isSummarizeMode,
     ratio: state.userSettings.ratio,
-    // FIXME:
-    state: state.userSettings
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
-    onUpdateState: (nextState: Partial<IUserSettingsState>) => dispatch(updateState(nextState))
+    onUpdateState: (nextState: Partial<IUserSettingsState>) => dispatch(updateState(nextState)),
+    onPushState: () => dispatch(pushState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeightPicker)

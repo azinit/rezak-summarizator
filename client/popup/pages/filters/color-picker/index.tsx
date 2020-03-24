@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import { Form } from 'react-bootstrap'
 import classNames from 'classnames'
 import { MAX_WEIGHT, previewText } from '../fixtures'
-import { updateState } from '../../../../shared/store/user-settings'
-import BackgroundService from '../../../../shared/service'
-import BLService from '../../../../shared/service/bl'
+import { updateState, pushState } from '../../../../shared/store/user-settings'
+import BLService from '../../../../shared/service'
 import './index.scss'
 
 // TODO: add get-colors impl from server
@@ -14,22 +13,21 @@ import './index.scss'
 type Props = {
     isColorMode: boolean;
     color: string;
-    // FIXME:
-    state: IUserSettingsState;
     onUpdateState: (nextState: Partial<IUserSettingsState>) => void;
+    onPushState: () => void;
 }
 
 /**
  * @see https://casesandberg.github.io/react-color/
  */
 const ColorPicker = (props: Props) => {
-    const { isColorMode, onUpdateState, color, state } = props;
+    const { isColorMode, color, onUpdateState, onPushState } = props;
     const colors = BLService.getPalette(color, MAX_WEIGHT, isColorMode);
 
     const onChangeMode = (e) => {
         const nextMode = e.target.checked;
         onUpdateState({ isColorMode: nextMode })
-        BackgroundService.pushState({ ...state, isColorMode: nextMode })
+        onPushState()
     }
 
     const onChangeColor = (nextColor) => {
@@ -41,7 +39,7 @@ const ColorPicker = (props: Props) => {
     const onChangeColorComplete = (nextColor) => {
         if (isColorMode) {
             onUpdateState({ color: nextColor.hex })
-            BackgroundService.pushState({ ...state, color: nextColor.hex })
+            onPushState()
         }
     }
 
@@ -73,10 +71,10 @@ const ColorPicker = (props: Props) => {
 const mapStateToProps = (state: IGlobalState) => ({
     isColorMode: state.userSettings.isColorMode,
     color: state.userSettings.color,
-    state: state.userSettings
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
-    onUpdateState: (nextState: Partial<IUserSettingsState>) => dispatch(updateState(nextState))
+    onUpdateState: (nextState: Partial<IUserSettingsState>) => dispatch(updateState(nextState)),
+    onPushState: () => dispatch(pushState())
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ColorPicker)

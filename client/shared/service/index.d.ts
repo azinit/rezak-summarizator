@@ -1,7 +1,3 @@
-declare type IBackgroundService = {
-    // FIXME:
-    pushState: (nextState: IUserSettingsState) => void;
-}
 declare type ISentence = {
     content: string;
     weight: number;

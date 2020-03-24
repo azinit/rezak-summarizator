@@ -14,10 +14,17 @@ const userSettingsSlice = createSlice({
         updateState(state: IUserSettingsState, action: PayloadAction<Partial<IUserSettingsState>>) {
             state = { ... state, ...action.payload }
             return state;
+        },
+        pushState(state: IUserSettingsState) {
+            chrome.runtime.sendMessage({
+                type: 'UPDATE_USER_SETTINGS',
+                payload: state,
+            });
+            return state
         }
     }
 })
 
-export const { updateState } = userSettingsSlice.actions;
+export const { updateState, pushState } = userSettingsSlice.actions;
 
 export const userSettingsReducer = userSettingsSlice.reducer;

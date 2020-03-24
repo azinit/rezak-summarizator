@@ -7,13 +7,13 @@ const { store, persistor } = PersistStore()
 
 // ... normal setup, create store and persistor, import components etc.
 const withStore = (Component: React.FC) => () => {
-    return (
-      <Provider store={store}>
+  return (
+    <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Component />
       </PersistGate>
     </Provider>
-    )
+  )
 }
 
 export default withStore;
