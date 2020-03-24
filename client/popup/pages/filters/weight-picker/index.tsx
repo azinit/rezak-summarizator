@@ -7,11 +7,12 @@ import { updateState } from '../../../../shared/store/user-settings';
 import './index.scss'
 import BackgroundService from '../../../../shared/service';
 import BLService from '../../../../shared/service/bl';
+import { log } from '../../../chrome-tools'
 
 // TODO: add percent to weight-picker
 type Props = {
     isSummarizeMode: boolean;
-    weight: number;
+    ratio: number;
     state: IUserSettingsState;
     onUpdateState: (nextState: Partial<IUserSettingsState>) => void;
 }
@@ -20,31 +21,33 @@ type Props = {
  * @see https://github.com/brownieboy/react-bootstrap-slider
  */
 const WeightPicker = (props: Props) => {
-    const { weight, isSummarizeMode, onUpdateState, state } = props;
+    const { ratio, isSummarizeMode, onUpdateState, state } = props;
     const MIN_VALUE = 0
     const MAX_VALUE = 100;
+    const CUR_VALUE = Math.ceil(ratio * MAX_VALUE);
+    log(`[${MIN_VALUE}-${MAX_VALUE}] >>> ${CUR_VALUE} (${ratio})`)
 
     /** text reducing logic */
     const text_sentences = previewText.map(s => s.content);
     const total_selection = previewText.map(s => s.weight);
     // FIXME: remove later
-    const threshold = ( weight / MAX_VALUE ) * MAX_WEIGHT;
+    const threshold = ratio * MAX_WEIGHT;
     const reducedText = BLService.reduceSentences(text_sentences, total_selection, threshold)
 
     const onChangeMode = (e) => {
         const nextEnabled = e.target.checked;
         if (!nextEnabled) {
             // FIXME: remove?
-            onUpdateState({ weight: 0 })
+            onUpdateState({ ratio: 0 })
         }
         onUpdateState({ isSummarizeMode: nextEnabled })
     }
 
     const onChangeWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const weight = +e.target.value;
-        onUpdateState({ weight })
+        const ratio = +e.target.value / MAX_VALUE;
+        onUpdateState({ ratio })
         // FIXME:
-        BackgroundService.pushState({ ...state, weight })
+        BackgroundService.pushState({ ...state, ratio })
     }
 
     return (
@@ -69,7 +72,7 @@ const WeightPicker = (props: Props) => {
                 </samp>
             </div>
             <ReactBootstrapSlider
-                value={weight}
+                value={CUR_VALUE}
                 change={onChangeWeight}
                 slideStop={onChangeWeight}
                 step={1}
@@ -85,7 +88,7 @@ const WeightPicker = (props: Props) => {
 
 const mapStateToProps = (state: IGlobalState) => ({
     isSummarizeMode: state.userSettings.isSummarizeMode,
-    weight: state.userSettings.weight,
+    ratio: state.userSettings.ratio,
     // FIXME:
     state: state.userSettings
 })

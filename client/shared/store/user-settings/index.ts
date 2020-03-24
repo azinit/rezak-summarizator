@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const userSettingsState: IUserSettingsState = {
+export const userSettingsState: IUserSettingsState = {
     isColorMode: true,
     color: "#00fff7",
     isSummarizeMode: true,
-    weight: 33
+    ratio: 0.33
 }
 
 const userSettingsSlice = createSlice({
