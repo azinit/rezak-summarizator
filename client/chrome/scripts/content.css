@@ -13,9 +13,12 @@
     width: 40px;
     height: 40px;
     padding: 3px;
-    color: #aaa;
+    color: #aaaaaa77;
     cursor: pointer;
     text-align: center;
+    transform: scale(0.8);
+    background-color: #29292977;
+    transition: color .2s
 }
 
 .rezak-modal-close:hover {
