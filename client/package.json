@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/martis-git/rezak-summarizator.git"
+    "url": "git+https://github.com/azinit/rezak-summarizator.git"
   },
   "types": "index.d.ts",
   "keywords": [
@@ -22,9 +22,9 @@
   "author": "Chao Group <chao.grp@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/martis-git/rezak-summarizator/issues"
+    "url": "https://github.com/azinit/rezak-summarizator/issues"
   },
-  "homepage": "https://github.com/martis-git/rezak-summarizator#readme",
+  "homepage": "https://github.com/azinit/rezak-summarizator#readme",
   "dependencies": {
     "@reduxjs/toolkit": "^1.2.5",
     "bootstrap": "^4.4.1",
